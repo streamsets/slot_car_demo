@@ -48,3 +48,9 @@ The physical buttons allow you to start a new race, stop a none finished race an
 
 ![](./extra/buttons.jpg)
 
+**Start Button**: Initiate a new race. If the current game already has a finish time (no new game was created), will start a new game with the same players.
+
+**Stop Button**: End a race before all laps are done.
+
+**Reset Buttons**: Reset the current Game
+
