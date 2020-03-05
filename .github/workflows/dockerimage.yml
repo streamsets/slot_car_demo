@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Go to Web directory
+      run: cd web
     - name: Build the Docker image
-      run: docker build /home/runner/work/slot_car_demo/slot_car_demo/web --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
