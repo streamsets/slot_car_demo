@@ -15,7 +15,7 @@ export class RaceComponent implements OnDestroy, OnInit {
   game: Game;
   gameSub: Subscription;
 
-  private windowOpened = false
+  private windowOpened = false;
 
   @ViewChild('contentTemplate', { static: false }) contentTemplate: TemplateRef<any>;
 
