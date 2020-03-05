@@ -1,0 +1,18 @@
+{
+  "pipelineId" : "readrace9ccd64d1-ad12-4a33-8ff0-1b4ecacdffda",
+  "title" : "read race",
+  "description" : "",
+  "created" : 1579174111596,
+  "lastModified" : 1583403027143,
+  "creator" : "admin",
+  "lastModifier" : "admin",
+  "lastRev" : "0",
+  "uuid" : "d700bd04-1f99-424e-b722-a7f9ea8fb2fc",
+  "valid" : true,
+  "metadata" : {
+    "labels" : [ "Race_demo" ]
+  },
+  "name" : "readrace9ccd64d1-ad12-4a33-8ff0-1b4ecacdffda",
+  "sdcVersion" : "3.13.0",
+  "sdcId" : "3d667fc2-3853-11ea-a551-d7f12a7f8c3d"
+}

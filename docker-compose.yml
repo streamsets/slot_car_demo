@@ -1,0 +1,143 @@
+version: '3.1'
+
+services:
+  kafka:
+    image: lensesio/box
+    container_name: kafka
+    restart: always
+    ports:
+      - "9092:9092"
+      - "3030:3030"
+      - "2181:2181"
+    environment:
+      EULA: "https://dl.lenses.io/d/?id=<Lenses token>"
+      ADV_HOST: <Your Ip address>
+      SAMPLEDATA: 0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  db:
+    image: mysql
+    container_name: database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+      - db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: streamsets
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  ### ###########################################
+  ### Spark
+  ### ###########################################
+
+  master:
+    build:
+      context: ./spark
+      dockerfile: ./Dockerfile
+    command: bin/spark-class org.apache.spark.deploy.master.Master -h master
+    hostname: master
+    environment:
+      MASTER: spark://master:7077
+      SPARK_CONF_DIR: /conf
+      SPARK_PUBLIC_DNS: localhost
+    expose:
+      - 7001
+      - 7002
+      - 7003
+      - 7004
+      - 7005
+      - 7077
+      - 6066
+    ports:
+      - 4040:4040
+      - 6066:6066
+      - 7077:7077
+      - 8080:8080
+    volumes:
+      - ./spark/conf/master:/conf
+      - ./transformer/data:/tmp/data
+
+  worker:
+    build:
+      context: ./spark
+      dockerfile: ./Dockerfile
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
+    hostname: worker
+    environment:
+      SPARK_CONF_DIR: /conf
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_WORKER_PORT: 8881
+      SPARK_WORKER_WEBUI_PORT: 8081
+      SPARK_PUBLIC_DNS: localhost
+    links:
+      - master
+    expose:
+      - 7012
+      - 7013
+      - 7014
+      - 7015
+      - 8881
+    ports:
+      - 8081:8081
+    volumes:
+      - ./spark/conf/worker:/conf
+      - ./transformer/data:/tmp/data
+      - spark_home:/usr/spark
+      - hadoop:/usr/hadoop-3.2.0
+
+  transformer:
+    build:
+      context: ./transformer
+      dockerfile: Dockerfile
+      args:
+        - SDC_VERSION=latest
+    environment:
+      SPARK_HOME: /usr/spark
+      SPARK_DIST_CLASSPATH: /usr/hadoop-3.2.0/etc/hadoop/*:/usr/hadoop-3.2.0/share/hadoop/common/lib/*:/usr/hadoop-3.2.0/share/hadoop/common/*:/usr/hadoop-3.2.0/share/hadoop/hdfs/*:/usr/hadoop-3.2.0/share/hadoop/hdfs/lib/*:/usr/hadoop-3.2.0/share/hadoop/hdfs/*:/usr/hadoop-3.2.0/share/hadoop/yarn/lib/*:/usr/hadoop-3.2.0/share/hadoop/yarn/*:/usr/hadoop-3.2.0/share/hadoop/mapreduce/lib/*:/usr/hadoop-3.2.0/share/hadoop/mapreduce/*:/usr/hadoop-3.2.0/share/hadoop/tools/lib/*
+    ports:
+      - 19630:19630
+    volumes:
+      - ./transformer/data:/tmp/data
+      - ./transformer/sdt-data:/data/st
+      - spark_home:/usr/spark
+      - hadoop:/usr/hadoop-3.2.0
+
+  sdc:
+    build:
+      context: ./sdc
+      dockerfile: Dockerfile
+      args:
+        - SDC_VERSION=3.13.0
+        - SDC_LIBS=streamsets-datacollector-jdbc-lib,streamsets-datacollector-redis-lib,streamsets-datacollector-groovy_2_4-lib,streamsets-datacollector-apache-kafka_2_0-lib,streamsets-datacollector-orchestrator-lib
+    restart: always
+    volumes:
+      - ./sdc/data:/data
+      - ./sdc/resources:/resources
+    expose:
+      - 8000
+    ports:
+      - 18630:18630
+      - 8000:8000
+
+  dashboard:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+  
+volumes:
+  spark_home:
+  hadoop:
+  db:

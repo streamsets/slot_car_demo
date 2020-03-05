@@ -1,0 +1,809 @@
+{
+  "schemaVersion" : 6,
+  "version" : 16,
+  "pipelineId" : "statsef3cff4f-371b-4994-82c4-bdddf6d6ede7",
+  "title" : "stats",
+  "description" : "",
+  "uuid" : "ee5aef17-3a32-46d9-bd58-e4881078ee9e",
+  "configuration" : [ {
+    "name" : "executionMode",
+    "value" : "BATCH"
+  }, {
+    "name" : "edgeHttpUrl",
+    "value" : "http://localhost:18633"
+  }, {
+    "name" : "deliveryGuarantee",
+    "value" : "AT_LEAST_ONCE"
+  }, {
+    "name" : "testOriginStage",
+    "value" : "streamsets-datacollector-dev-lib::com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource::3"
+  }, {
+    "name" : "startEventStage",
+    "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+  }, {
+    "name" : "stopEventStage",
+    "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+  }, {
+    "name" : "shouldRetry",
+    "value" : true
+  }, {
+    "name" : "triggerInterval",
+    "value" : 2000
+  }, {
+    "name" : "retryAttempts",
+    "value" : -1
+  }, {
+    "name" : "ludicrousMode",
+    "value" : false
+  }, {
+    "name" : "ludicrousModeInputCount",
+    "value" : false
+  }, {
+    "name" : "advancedErrorHandling",
+    "value" : false
+  }, {
+    "name" : "notifyOnStates",
+    "value" : [ "RUN_ERROR", "STOPPED", "FINISHED" ]
+  }, {
+    "name" : "emailIDs",
+    "value" : [ ]
+  }, {
+    "name" : "constants",
+    "value" : [ ]
+  }, {
+    "name" : "badRecordsHandling",
+    "value" : null
+  }, {
+    "name" : "errorRecordPolicy",
+    "value" : "ORIGINAL_RECORD"
+  }, {
+    "name" : "workerCount",
+    "value" : 0
+  }, {
+    "name" : "clusterSlaveMemory",
+    "value" : 2048
+  }, {
+    "name" : "clusterSlaveJavaOpts",
+    "value" : "-XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dlog4j.debug"
+  }, {
+    "name" : "clusterLauncherEnv",
+    "value" : [ ]
+  }, {
+    "name" : "mesosDispatcherURL",
+    "value" : null
+  }, {
+    "name" : "logLevel",
+    "value" : "ERROR"
+  }, {
+    "name" : "hdfsS3ConfDir",
+    "value" : null
+  }, {
+    "name" : "rateLimit",
+    "value" : 0
+  }, {
+    "name" : "maxRunners",
+    "value" : 0
+  }, {
+    "name" : "shouldCreateFailureSnapshot",
+    "value" : true
+  }, {
+    "name" : "runnerIdleTIme",
+    "value" : 60
+  }, {
+    "name" : "webhookConfigs",
+    "value" : [ ]
+  }, {
+    "name" : "sparkConfigs",
+    "value" : [ {
+      "key" : "spark.driver.memory",
+      "value" : "2G"
+    }, {
+      "key" : "spark.driver.cores",
+      "value" : "1"
+    }, {
+      "key" : "spark.executor.memory",
+      "value" : "2G"
+    }, {
+      "key" : "spark.executor.cores",
+      "value" : "1"
+    }, {
+      "key" : "spark.dynamicAllocation.enabled",
+      "value" : "true"
+    }, {
+      "key" : "spark.dynamicAllocation.minExecutors",
+      "value" : "1"
+    } ]
+  }, {
+    "name" : "preprocessScript",
+    "value" : "/*\nThe following script define a method\nthat increments an integer by 1 \nand registers it as a UDF with \nthe SparkSession, which can be accessed\nusing the variable named \"spark\":\ndef inc(i: Integer): Integer = {\n  i + 1\n}\nspark.udf.register (\"inc\", inc _)\n\n*/"
+  }, {
+    "name" : "clusterConfig.clusterType",
+    "value" : "LOCAL"
+  }, {
+    "name" : "clusterConfig.sparkMasterUrl",
+    "value" : "local[*]"
+  }, {
+    "name" : "clusterConfig.deployMode",
+    "value" : "CLIENT"
+  }, {
+    "name" : "clusterConfig.hadoopUserName",
+    "value" : null
+  }, {
+    "name" : "clusterConfig.sparkAppName",
+    "value" : "${pipeline:title()}"
+  }, {
+    "name" : "clusterConfig.stagingDir",
+    "value" : "/streamsets"
+  }, {
+    "name" : "clusterConfig.useYarnKerberosKeytab",
+    "value" : false
+  }, {
+    "name" : "clusterConfig.yarnKerberosKeytabSource",
+    "value" : "PROPERTIES_FILE"
+  }, {
+    "name" : "clusterConfig.yarnKerberosKeytab",
+    "value" : null
+  }, {
+    "name" : "clusterConfig.yarnKerberosPrincipal",
+    "value" : "name@DOMAIN"
+  }, {
+    "name" : "databricksConfig.baseUrl",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.credentialType",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.username",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.password",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.token",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.provisionNewCluster",
+    "value" : true
+  }, {
+    "name" : "databricksConfig.clusterId",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.clusterConfig",
+    "value" : "{\n    \"num_workers\": 8,\n    \"spark_version\": \"5.3.x-scala2.11\",\n    \"node_type_id\": \"i3.xlarge\"\n}"
+  }, {
+    "name" : "databricksConfig.terminateCluster",
+    "value" : false
+  }, {
+    "name" : "livyConfig.baseUrl",
+    "value" : "https://localhost:30443/gateway/default/livy/v1/"
+  }, {
+    "name" : "livyConfig.username",
+    "value" : null
+  }, {
+    "name" : "livyConfig.password",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.userRegion",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.userRegionCustom",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.accessKey",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.secretKey",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.s3StagingUri",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.provisionNewCluster",
+    "value" : false
+  }, {
+    "name" : "amazonEMRConfig.clusterId",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.clusterPrefix",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.terminateCluster",
+    "value" : false
+  }, {
+    "name" : "amazonEMRConfig.loggingEnabled",
+    "value" : true
+  }, {
+    "name" : "amazonEMRConfig.s3LogUri",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.enableEMRDebugging",
+    "value" : true
+  }, {
+    "name" : "amazonEMRConfig.serviceRole",
+    "value" : "EMR_DefaultRole"
+  }, {
+    "name" : "amazonEMRConfig.jobFlowRole",
+    "value" : "EMR_EC2_DefaultRole"
+  }, {
+    "name" : "amazonEMRConfig.visibleToAllUsers",
+    "value" : true
+  }, {
+    "name" : "amazonEMRConfig.ec2SubnetId",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.masterSecurityGroup",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.slaveSecurityGroup",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.instanceCount",
+    "value" : 2
+  }, {
+    "name" : "amazonEMRConfig.masterInstanceType",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.masterInstanceTypeCustom",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.slaveInstanceType",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.slaveInstanceTypeCustom",
+    "value" : null
+  }, {
+    "name" : "statsAggregatorStage",
+    "value" : ""
+  } ],
+  "uiInfo" : {
+    "previewConfig" : {
+      "previewSource" : "CONFIGURED_SOURCE",
+      "batchSize" : 10,
+      "timeout" : 120000,
+      "writeToDestinations" : false,
+      "executeLifecycleEvents" : false,
+      "showHeader" : false,
+      "showFieldType" : true,
+      "rememberMe" : false,
+      "endStage" : ""
+    }
+  },
+  "fragments" : [ ],
+  "stages" : [ {
+    "instanceName" : "JDBC_01",
+    "library" : "streamsets-spark-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_spark_origin_jdbc_SparkJDBCDOrigin",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "conf.connectionConfig.jdbcUrl",
+      "value" : "jdbc:mysql://db:3306/racing"
+    }, {
+      "name" : "conf.connectionConfig.useCredential",
+      "value" : true
+    }, {
+      "name" : "conf.connectionConfig.username",
+      "value" : "root"
+    }, {
+      "name" : "conf.connectionConfig.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "conf.connectionConfig.jdbcProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "conf.connectionConfig.driverConfig",
+      "value" : "AUTO_DETECT"
+    }, {
+      "name" : "conf.connectionConfig.driverClassName",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.schema",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.table",
+      "value" : "laps"
+    }, {
+      "name" : "conf.offsetCol",
+      "value" : null
+    }, {
+      "name" : "conf.rowsPerBatch",
+      "value" : -1
+    }, {
+      "name" : "conf.numPartitions",
+      "value" : 10
+    }, {
+      "name" : "conf.fieldsToSelect",
+      "value" : [ ]
+    }, {
+      "name" : "conf.where",
+      "value" : null
+    }, {
+      "name" : "conf.minPartitionSize",
+      "value" : 10000
+    }, {
+      "name" : "conf.useFetchSize",
+      "value" : false
+    }, {
+      "name" : "conf.fetchSize",
+      "value" : null
+    }, {
+      "name" : "conf.useCustomMinMaxQuery",
+      "value" : false
+    }, {
+      "name" : "conf.customMinMaxQuery",
+      "value" : null
+    }, {
+      "name" : "noReload",
+      "value" : false
+    }, {
+      "name" : "cache",
+      "value" : true
+    }, {
+      "name" : "skipOffsetTracking",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 50,
+      "stageType" : "SOURCE",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Laps",
+      "xPos" : 60
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ "JDBC_01OutputLane15790960827050" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBC_02",
+    "library" : "streamsets-spark-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_spark_origin_jdbc_SparkJDBCDOrigin",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "conf.connectionConfig.jdbcUrl",
+      "value" : "jdbc:mysql://db:3306/racing"
+    }, {
+      "name" : "conf.connectionConfig.useCredential",
+      "value" : true
+    }, {
+      "name" : "conf.connectionConfig.username",
+      "value" : "root"
+    }, {
+      "name" : "conf.connectionConfig.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "conf.connectionConfig.jdbcProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "conf.connectionConfig.driverConfig",
+      "value" : "AUTO_DETECT"
+    }, {
+      "name" : "conf.connectionConfig.driverClassName",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.schema",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.table",
+      "value" : "players"
+    }, {
+      "name" : "conf.offsetCol",
+      "value" : null
+    }, {
+      "name" : "conf.rowsPerBatch",
+      "value" : -1
+    }, {
+      "name" : "conf.numPartitions",
+      "value" : 10
+    }, {
+      "name" : "conf.fieldsToSelect",
+      "value" : [ ]
+    }, {
+      "name" : "conf.where",
+      "value" : null
+    }, {
+      "name" : "conf.minPartitionSize",
+      "value" : 10000
+    }, {
+      "name" : "conf.useFetchSize",
+      "value" : false
+    }, {
+      "name" : "conf.fetchSize",
+      "value" : null
+    }, {
+      "name" : "conf.useCustomMinMaxQuery",
+      "value" : false
+    }, {
+      "name" : "conf.customMinMaxQuery",
+      "value" : null
+    }, {
+      "name" : "noReload",
+      "value" : false
+    }, {
+      "name" : "cache",
+      "value" : true
+    }, {
+      "name" : "skipOffsetTracking",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 200,
+      "stageType" : "SOURCE",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Players",
+      "xPos" : 60
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ "JDBC_02OutputLane15790962180800" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "FieldRenamer_01",
+    "library" : "streamsets-spark-basic-lib",
+    "stageName" : "com_streamsets_pipeline_spark_transform_fieldrenamer_FieldRenamerDTransform",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "conf.rules",
+      "value" : [ {
+        "renameType" : "SIMPLE_REPLACE",
+        "caseInsensitive" : false,
+        "field" : "id",
+        "replacement" : "lap_id"
+      } ]
+    }, {
+      "name" : "cache",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 50,
+      "stageType" : "PROCESSOR",
+      "icon" : "edit.png",
+      "description" : "",
+      "label" : "Field Renamer 1",
+      "xPos" : 280
+    },
+    "inputLanes" : [ "JDBC_01OutputLane15790960827050" ],
+    "outputLanes" : [ "FieldRenamer_01OutputLane15790968622080" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "FieldRenamer_02",
+    "library" : "streamsets-spark-basic-lib",
+    "stageName" : "com_streamsets_pipeline_spark_transform_fieldrenamer_FieldRenamerDTransform",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "conf.rules",
+      "value" : [ {
+        "renameType" : "SIMPLE_REPLACE",
+        "caseInsensitive" : false,
+        "field" : "id",
+        "replacement" : "player_id"
+      } ]
+    }, {
+      "name" : "cache",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 200,
+      "stageType" : "PROCESSOR",
+      "icon" : "edit.png",
+      "description" : "",
+      "label" : "Field Renamer 2",
+      "xPos" : 280
+    },
+    "inputLanes" : [ "JDBC_02OutputLane15790962180800" ],
+    "outputLanes" : [ "FieldRenamer_02OutputLane15790969106130" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "Join_01",
+    "library" : "streamsets-spark-basic-lib",
+    "stageName" : "com_streamsets_pipeline_spark_transform_join_JoinDTransform",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "configBean.joinType",
+      "value" : "INNER"
+    }, {
+      "name" : "configBean.addPrefix",
+      "value" : false
+    }, {
+      "name" : "configBean.leftPrefix",
+      "value" : "left_"
+    }, {
+      "name" : "configBean.rightPrefix",
+      "value" : "right_"
+    }, {
+      "name" : "configBean.joinOn",
+      "value" : "CONDITION"
+    }, {
+      "name" : "configBean.joinCols",
+      "value" : [ "" ]
+    }, {
+      "name" : "configBean.condition",
+      "value" : "player = player_id"
+    }, {
+      "name" : "cache",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 180,
+      "stageType" : "PROCESSOR",
+      "icon" : "join.png",
+      "description" : "",
+      "inputStreamLabels" : [ "Left Input", "Right Input" ],
+      "label" : "Join",
+      "xPos" : 500
+    },
+    "inputLanes" : [ "FieldRenamer_01OutputLane15790968622080", "FieldRenamer_02OutputLane15790969106130" ],
+    "outputLanes" : [ "Join_01OutputLane15790962451090" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "Aggregate_01",
+    "library" : "streamsets-spark-basic-lib",
+    "stageName" : "com_streamsets_pipeline_spark_transform_aggr_AggregateDTransform",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "conf.aggrTypeAndFields",
+      "value" : [ {
+        "aggregateType" : "MIN",
+        "aggregateField" : "duration"
+      } ]
+    }, {
+      "name" : "conf.groupByFields",
+      "value" : [ "player_id", "name" ]
+    }, {
+      "name" : "cache",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 50,
+      "stageType" : "PROCESSOR",
+      "icon" : "aggregation.png",
+      "description" : "",
+      "label" : "Min Duration",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "Join_01OutputLane15790962451090" ],
+    "outputLanes" : [ "Aggregate_01OutputLane15790996452240" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "FieldRemover_01",
+    "library" : "streamsets-spark-basic-lib",
+    "stageName" : "com_streamsets_pipeline_spark_transform_fieldfilter_FieldFilterDTransform",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "filterOperation",
+      "value" : "KEEP"
+    }, {
+      "name" : "filterCriteria",
+      "value" : "NAMED"
+    }, {
+      "name" : "fields",
+      "value" : [ "player_id", "name", "min_duration" ]
+    }, {
+      "name" : "cache",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 50,
+      "stageType" : "PROCESSOR",
+      "icon" : "filter.png",
+      "description" : "",
+      "label" : "Field Remover 1",
+      "xPos" : 940
+    },
+    "inputLanes" : [ "Aggregate_01OutputLane15790996452240" ],
+    "outputLanes" : [ "FieldRemover_01OutputLane15791001520340" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBC_03",
+    "library" : "streamsets-spark-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_spark_destination_jdbc_JdbcDDestination",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "conf.connectionConfig.jdbcUrl",
+      "value" : "jdbc:mysql://db:3306/racing"
+    }, {
+      "name" : "conf.connectionConfig.useCredential",
+      "value" : true
+    }, {
+      "name" : "conf.connectionConfig.username",
+      "value" : "root"
+    }, {
+      "name" : "conf.connectionConfig.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "conf.connectionConfig.jdbcProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "conf.connectionConfig.driverConfig",
+      "value" : "AUTO_DETECT"
+    }, {
+      "name" : "conf.connectionConfig.driverClassName",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.schema",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.table",
+      "value" : "best_players_laps"
+    }, {
+      "name" : "conf.writeMode",
+      "value" : "OVERWRITE"
+    }, {
+      "name" : "conf.truncateBehavior",
+      "value" : "RECREATE"
+    }, {
+      "name" : "conf.concurrentWriters",
+      "value" : -1
+    }, {
+      "name" : "conf.writeBatchSize",
+      "value" : -1
+    } ],
+    "uiInfo" : {
+      "yPos" : 50,
+      "stageType" : "TARGET",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "best players laps",
+      "xPos" : 1160
+    },
+    "inputLanes" : [ "FieldRemover_01OutputLane15791001520340" ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "Aggregate_02",
+    "library" : "streamsets-spark-basic-lib",
+    "stageName" : "com_streamsets_pipeline_spark_transform_aggr_AggregateDTransform",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "conf.aggrTypeAndFields",
+      "value" : [ {
+        "aggregateType" : "SUM",
+        "aggregateField" : "duration"
+      } ]
+    }, {
+      "name" : "conf.groupByFields",
+      "value" : [ "player_id", "name" ]
+    }, {
+      "name" : "cache",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 200,
+      "stageType" : "PROCESSOR",
+      "icon" : "aggregation.png",
+      "description" : "",
+      "label" : "Sum duration",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "Join_01OutputLane15790962451090" ],
+    "outputLanes" : [ "Aggregate_02OutputLane15791044859340" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "FieldRemover_02",
+    "library" : "streamsets-spark-basic-lib",
+    "stageName" : "com_streamsets_pipeline_spark_transform_fieldfilter_FieldFilterDTransform",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "filterOperation",
+      "value" : "KEEP"
+    }, {
+      "name" : "filterCriteria",
+      "value" : "NAMED"
+    }, {
+      "name" : "fields",
+      "value" : [ "player_id", "name", "sum_duration" ]
+    }, {
+      "name" : "cache",
+      "value" : false
+    } ],
+    "uiInfo" : {
+      "yPos" : 200,
+      "stageType" : "PROCESSOR",
+      "icon" : "filter.png",
+      "description" : "",
+      "label" : "Field Remover 2",
+      "xPos" : 940
+    },
+    "inputLanes" : [ "Aggregate_02OutputLane15791044859340" ],
+    "outputLanes" : [ "FieldRemover_02OutputLane15791046935890" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBC_04",
+    "library" : "streamsets-spark-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_spark_destination_jdbc_JdbcDDestination",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "conf.connectionConfig.jdbcUrl",
+      "value" : "jdbc:mysql://db:3306/racing"
+    }, {
+      "name" : "conf.connectionConfig.useCredential",
+      "value" : true
+    }, {
+      "name" : "conf.connectionConfig.username",
+      "value" : "root"
+    }, {
+      "name" : "conf.connectionConfig.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "conf.connectionConfig.jdbcProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "conf.connectionConfig.driverConfig",
+      "value" : "AUTO_DETECT"
+    }, {
+      "name" : "conf.connectionConfig.driverClassName",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.schema",
+      "value" : null
+    }, {
+      "name" : "conf.tableConfig.table",
+      "value" : "best_players_races"
+    }, {
+      "name" : "conf.writeMode",
+      "value" : "OVERWRITE"
+    }, {
+      "name" : "conf.truncateBehavior",
+      "value" : "RECREATE"
+    }, {
+      "name" : "conf.concurrentWriters",
+      "value" : -1
+    }, {
+      "name" : "conf.writeBatchSize",
+      "value" : -1
+    } ],
+    "uiInfo" : {
+      "yPos" : 200,
+      "stageType" : "TARGET",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "best players races",
+      "xPos" : 1160
+    },
+    "inputLanes" : [ "FieldRemover_02OutputLane15791046935890" ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  } ],
+  "errorStage" : null,
+  "info" : {
+    "pipelineId" : "statsef3cff4f-371b-4994-82c4-bdddf6d6ede7",
+    "title" : "stats",
+    "description" : "",
+    "created" : 1579096071219,
+    "lastModified" : 1579104857984,
+    "creator" : "admin",
+    "lastModifier" : "admin",
+    "lastRev" : "0",
+    "uuid" : "41a7356d-aab6-4bda-8320-a388a3b62d1b",
+    "valid" : true,
+    "metadata" : {
+      "labels" : [ "Racing Demo" ]
+    },
+    "name" : "statsef3cff4f-371b-4994-82c4-bdddf6d6ede7",
+    "sdcVersion" : "3.11.0",
+    "sdcId" : "7faaae7e-b9fc-11e9-9594-e54a37a22ed7"
+  },
+  "metadata" : {
+    "labels" : [ "Racing Demo" ]
+  },
+  "statsAggregatorStage" : null,
+  "startEventStages" : [ ],
+  "stopEventStages" : [ ],
+  "testOriginStage" : null,
+  "valid" : true,
+  "issues" : {
+    "pipelineIssues" : [ ],
+    "stageIssues" : { },
+    "issueCount" : 0
+  },
+  "previewable" : true
+}

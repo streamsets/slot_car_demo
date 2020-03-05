@@ -1,0 +1,18 @@
+{
+  "pipelineId" : "gameapi496eb923-2e5e-494b-88ce-2b92bb6ca0c9",
+  "title" : "game api",
+  "description" : "Usage:\n\nGET Request:\n���  ~ curl -i -X GET http://localhost:8000/rest/v1/user --header \"X-SDC-APPLICATION-ID:microservice\"\nHTTP/1.1 200 OK\nDate: Sat, 21 Jul 2018 17:50:15 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":200,\"data\":[{\"ID\":\"1\",\"NAME\":\"Sample User Name\",\"AGE\":\"37\",\"ADDRESS\":\"1234 San Francisco\"}],\"error\":[],\"errorMessage\":null}\n\n\nPOST Request:\n���  ~ curl -i -X POST http://localhost:8000/rest/v1/user --header \"X-SDC-APPLICATION-ID:microservice\" -d '{\"ID\":1, \"NAME\": \"Sample Name\", \"AGE\":34, \"ADDRESS\": \"2333 San Francisco\"}'\nHTTP/1.1 200 OK\nDate: Sat, 21 Jul 2018 17:51:42 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":200,\"data\":[{\"ID\":1,\"NAME\":\"Sample Name\",\"AGE\":34,\"ADDRESS\":\"2333 San Francisco\",\"sampleData\":\"POST Request Processed\"}],\"error\":[],\"errorMessage\":null}\n\nBad Request:\n���  ~ curl -i -X GET http://localhost:8000/invalidPath --header \"X-SDC-APPLICATION-ID:microservice\"\nHTTP/1.1 400 Bad Request\nDate: Sat, 21 Jul 2018 17:48:53 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":400,\"data\":[{}],\"error\":[],\"errorMessage\":null}",
+  "created" : 1579174111042,
+  "lastModified" : 1579179406212,
+  "creator" : "admin",
+  "lastModifier" : "admin",
+  "lastRev" : "0",
+  "uuid" : "ba6f62c5-cc0d-4a08-a536-3f5d14886f0b",
+  "valid" : true,
+  "metadata" : {
+    "labels" : [ "Race_demo" ]
+  },
+  "name" : "gameapi496eb923-2e5e-494b-88ce-2b92bb6ca0c9",
+  "sdcVersion" : "3.13.0",
+  "sdcId" : "3d667fc2-3853-11ea-a551-d7f12a7f8c3d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion" : 1,
+  "baseVersion" : "20190905074500",
+  "updates" : [ ],
+  "rules" : [ {
+    "uuid" : "319cc8e7-7588-4d65-a51f-4c7982f0def7",
+    "preconditions" : [ "version.isGreaterOrEqualTo('3.9.0')" ],
+    "entity" : "VALIDATION",
+    "conditions" : [ "issue.errorCode() == 'JDBC_06'", "issue.args(0).contains('Failed to get driver instance for')", "context['db'] = issue.args(0).contains('jdbc:mysql://') ? 'mysql' : ''", "context['db'] = issue.args(0).contains('jdbc:oracle:') ? 'oracle' : context['db']", "context['db'] = issue.args(0).contains('jdbc:sqlserver') ? 'sqlserver' : context['db']" ],
+    "startingContext" : [ "context['dbs'] = {'N/A': {'driver': 'N/A', 'url': 'N/A'}}", "context['dbs']['mysql'] = {'name': 'MySQL','driver': 'com.mysql.jdbc.Driver', 'url': 'https://dev.mysql.com/downloads/connector/j/'}", "context['dbs']['oracle'] = {'name': 'Oracle','driver': 'oracle.jdbc.driver.OracleDriver', 'url': 'https://www.oracle.com/technetwork/database/application-development/jdbc/downloads/index.html'}", "context['dbs']['sqlserver'] = {'name': 'Microsoft SQL Server','driver': 'com.microsoft.sqlserver.jdbc.SQLServerDriver', 'url': 'https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-2017'}" ],
+    "message" : {
+      "summary" : "Install the JDBC driver for the database.",
+      "description" : [ "Data Collector cannot include JDBC drivers due to incompatible licenses. As a result, you must <a href='https://streamsets.com/documentation/datacollector/latest/help/datacollector/UserGuide/Configuration/ExternalLibs.html#concept_pdv_qlw_ft'>manually install</a> JDBC drivers.<br /><br />", "$$ if(context['db'] =~ context['dbs']) {", "You are trying to connect to ${context['dbs'][context['db']]['name']}.", "$$ if(java:hasClass(stageDef.getStageClassLoader(), context['dbs'][context['db']]['driver'])) {", "The driver is installed, but Java cannot load the driver through the JDBC v4 specification. Try entering '<i>${context['dbs'][context['db']]['driver']}</i>' in the <b>JDBC Driver Class Name</b> property on the <b>Legacy Drivers</b> tab.", "$$ } else {", "The correct JDBC driver '<i>${context['dbs'][context['db']]['driver']}</i>' has not been installed. <a href='${context['dbs'][context['db']]['url']}'>Download</a> and then install the driver as described in <a href='https://streamsets.com/documentation/datacollector/latest/help/datacollector/UserGuide/Configuration/ExternalLibs.html#concept_pdv_qlw_ft'>our documentation</a>.<br /><br />", "$$ }", "$$ } else {", "Your database vendor should provide you with a download link to the required JDBC driver.", "$$ }" ]
+    }
+  }, {
+    "uuid" : "c84aaa61-27cc-40b4-aac2-713c85f52fd0",
+    "preconditions" : [ "version.isGreaterOrEqualTo('3.9.0')" ],
+    "entity" : "REST",
+    "conditions" : [ "issue.errorCode() == 'REST_1001'", "sdc.getStageLibraryTask().getLegacyStageLibs().contains(issue.args().get(0))" ],
+    "startingContext" : [ ],
+    "message" : {
+      "summary" : "Legacy library ${issue.args().get(0)} must be installed manually.",
+      "description" : [ "Stage library <i>${issue.args().get(0)}</i> has now been moved to <a href='https://streamsets.com/documentation/datacollector/latest/help/datacollector/UserGuide/Installation/AddtionalStageLibs.html#concept_fw3_zt3_tbb'>legacy stage libraries</a> and can't be installed automatically.<br /><br />", "Though we strongly advise using the stage libraries provided with Data Collector, and upgrading related systems, you can continue to use these legacy libraries when necessary. If needed, install the legacy stage library as you install any <a href='https://streamsets.com/documentation/datacollector/latest/help/datacollector/UserGuide/Installation/AddtionalStageLibs.html#concept_fb2_qmn_bz'>additional stage library</a>." ]
+    }
+  }, {
+    "uuid" : "7d800180-6ea2-4bb5-b31d-c664bfb67d5d",
+    "preconditions" : [ "version.isGreaterOrEqualTo('3.9.0')", "sdc.stagelibNames().contains('streamsets-datacollector-jdbc-lib')" ],
+    "entity" : "STAGE",
+    "conditions" : [ "issue.errorCode() == 'JDBC_03'", "stageDef.getType() == 'SOURCE'", "stageConf.getConfig('hikariConfigBean.connectionString').getValue().contains('jdbc:oracle:thin')", "issue.args().get(1) == -101 || issue.args().get(1) == -102", "context['jar'] = collection:filterByRegExp(stageDef.getClassPath(), 'ojdbc[6|7].jar')", "context['jar'].size() > 0", "context['fileName'] = file:fileName(context['jar'][0])" ],
+    "startingContext" : [ ],
+    "message" : {
+      "summary" : "Try upgrading the Oracle JDBC driver. The installed driver '${context['fileName']}' is no longer actively supported by Oracle.",
+      "description" : [ "The column <b>${issue.args().get(0)}</b> is of type <i>TIMESTAMP WITH ${issue.args().get(1) == -102 ? 'LOCAL' : ''} TIME ZONE</i>. Older versions of Oracle JDBC driver are known to have problems with this data type.<br /><br />", "Upgrade to the latest the Oracle JDBC driver by replacing the driver loaded from the following location:<br /><br /> <i>${context['jar'][0]}</i>." ]
+    }
+  }, {
+    "uuid" : "cf929f62-ba4d-4017-9191-d7b03ac0769e",
+    "preconditions" : [ "version.isGreaterOrEqualTo('3.9.0')", "sdc.stagelibNames().contains('streamsets-datacollector-jdbc-lib')" ],
+    "entity" : "STAGE",
+    "conditions" : [ "issue.errorCode() == 'JDBC_75'", "stageDef.getType() == 'SOURCE'", "stageConf.getConfig('hikariConfigBean.connectionString').getValue().contains('jdbc:oracle:thin')", "issue.args().size() > 1 && (issue.args().get(0).contains('java.lang.NoClassDefFoundError: oracle/xdb/XMLType') || issue.args().get(0).contains('java.lang.NoClassDefFoundError: oracle/xml/parser/v2/XMLParseException'))", "context['jars'] = collection:filterByRegExp(stageDef.getClassPath(),'xdb6.jar|xmlparserv2.*')", "context['jars'].size() < 2", "context['jdbcJar'] = collection:filterByRegExp(stageDef.getClassPath(),'ojdbc[0-9]+.jar')[0]" ],
+    "startingContext" : [ ],
+    "message" : {
+      "summary" : "The Oracle JDBC driver requires additional JAR files to read the XMLTYPE data type.",
+      "description" : [ "Data Collector is using a JDBC driver loaded from the file <i>'${file:fileName(context['jdbcJar'])}'</i>. This JAR file does not contain all of the necessary dependencies required to read tables with an <i>XMLTYPE</i> column.", "Additional JAR files named <i>xdb6.jar</i> and <i>xmlparserv2.jar</i> must be installed separately.<br /><br />", "$$ if(context['jars'].size() == 0) {", "This installation is missing both of those files.", "$$ } else {", "This installation contains only the ${file:fileName(context['jars'][0])} file.", "$$ }", "<br /><br />", "Download and install the additional JAR files using Package Manager or install them directly into the <i>${file:parentPath(context['jdbcJar'])}</i> directory." ]
+    }
+  } ]
+}

@@ -1,0 +1,44 @@
+{
+  "KafkaProducer_01" : {
+    "yPos" : 40,
+    "stageType" : "TARGET",
+    "icon" : "kafka.png",
+    "description" : "",
+    "label" : "Kafka Producer 1",
+    "xPos" : 280
+  },
+  ":pipeline:" : {
+    "previewConfig" : {
+      "previewSource" : "CONFIGURED_SOURCE",
+      "batchSize" : 10,
+      "timeout" : 30000,
+      "writeToDestinations" : false,
+      "executeLifecycleEvents" : false,
+      "showHeader" : true,
+      "showFieldType" : true,
+      "rememberMe" : false
+    }
+  },
+  "FileTail_01" : {
+    "outputStreamLabels" : [ "Data", "Metadata" ],
+    "yPos" : 110,
+    "stageType" : "SOURCE",
+    "rawSource" : {
+      "configuration" : [ {
+        "name" : "fileName"
+      } ]
+    },
+    "icon" : "fileTail.png",
+    "description" : "",
+    "label" : "File Tail 1",
+    "xPos" : 60
+  },
+  "Trash_02" : {
+    "yPos" : 170,
+    "stageType" : "TARGET",
+    "icon" : "trash.png",
+    "description" : "",
+    "label" : "Trash 2",
+    "xPos" : 280
+  }
+}

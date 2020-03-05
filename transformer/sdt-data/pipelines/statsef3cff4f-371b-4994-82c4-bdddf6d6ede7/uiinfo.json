@@ -1,0 +1,104 @@
+{
+  "JDBC_04" : {
+    "yPos" : 200,
+    "stageType" : "TARGET",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "best players races",
+    "xPos" : 1160
+  },
+  "Join_01" : {
+    "yPos" : 180,
+    "stageType" : "PROCESSOR",
+    "icon" : "join.png",
+    "description" : "",
+    "inputStreamLabels" : [ "Left Input", "Right Input" ],
+    "label" : "Join",
+    "xPos" : 500
+  },
+  "Aggregate_01" : {
+    "yPos" : 50,
+    "stageType" : "PROCESSOR",
+    "icon" : "aggregation.png",
+    "description" : "",
+    "label" : "Min Duration",
+    "xPos" : 720
+  },
+  "FieldRemover_01" : {
+    "yPos" : 50,
+    "stageType" : "PROCESSOR",
+    "icon" : "filter.png",
+    "description" : "",
+    "label" : "Field Remover 1",
+    "xPos" : 940
+  },
+  "Aggregate_02" : {
+    "yPos" : 200,
+    "stageType" : "PROCESSOR",
+    "icon" : "aggregation.png",
+    "description" : "",
+    "label" : "Sum duration",
+    "xPos" : 720
+  },
+  "FieldRemover_02" : {
+    "yPos" : 200,
+    "stageType" : "PROCESSOR",
+    "icon" : "filter.png",
+    "description" : "",
+    "label" : "Field Remover 2",
+    "xPos" : 940
+  },
+  ":pipeline:" : {
+    "previewConfig" : {
+      "previewSource" : "CONFIGURED_SOURCE",
+      "batchSize" : 10,
+      "timeout" : 120000,
+      "writeToDestinations" : false,
+      "executeLifecycleEvents" : false,
+      "showHeader" : false,
+      "showFieldType" : true,
+      "rememberMe" : false,
+      "endStage" : ""
+    }
+  },
+  "JDBC_01" : {
+    "yPos" : 50,
+    "stageType" : "SOURCE",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Laps",
+    "xPos" : 60
+  },
+  "JDBC_02" : {
+    "yPos" : 200,
+    "stageType" : "SOURCE",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Players",
+    "xPos" : 60
+  },
+  "FieldRenamer_01" : {
+    "yPos" : 50,
+    "stageType" : "PROCESSOR",
+    "icon" : "edit.png",
+    "description" : "",
+    "label" : "Field Renamer 1",
+    "xPos" : 280
+  },
+  "FieldRenamer_02" : {
+    "yPos" : 200,
+    "stageType" : "PROCESSOR",
+    "icon" : "edit.png",
+    "description" : "",
+    "label" : "Field Renamer 2",
+    "xPos" : 280
+  },
+  "JDBC_03" : {
+    "yPos" : 50,
+    "stageType" : "TARGET",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "best players laps",
+    "xPos" : 1160
+  }
+}

@@ -1,0 +1,26 @@
+<nb-card class="cards-container">
+    <nb-card size="large" class="table-card">
+        <nb-card-header>
+            <div class="header">
+                <nb-user size="large" name="{{player?.name}}">
+                </nb-user>
+                <i *ngIf="winner" class="fas fa-crown" style="color: gold;"></i>
+            </div>
+        </nb-card-header>
+        <nb-list>
+            <nb-list-item class="item" *ngFor="let lap of laps; let i = index;">
+                <span class="month">{{ lap.number }}</span>
+                <span class="time">{{lap.time | date:"hh'h'mm ss's' SSS"}}</span>
+                <span *ngIf="i > 0; else baseline" class="delta" [class.up]="deltaUp(lap)" [class.down]="!deltaUp(lap)">
+                    <nb-icon [icon]="deltaUp(lap) ? 'arrow-up' : 'arrow-down'" pack="eva"></nb-icon>
+                    {{lap.duration}}ms
+                </span>
+                <ng-template #baseline>
+                    <span>
+                        {{lap.duration}}ms
+                    </span>
+                </ng-template>
+            </nb-list-item>
+        </nb-list>
+    </nb-card>
+</nb-card>

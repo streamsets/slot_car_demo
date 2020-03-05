@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-5">
+    <ngx-player [player]="game?.player1" [game]="game?.id" [winner]="game?.winner === game?.player1.id"></ngx-player>
+  </div>
+  <div class="col-md-2" style="text-align: center;font-size: 80px;color: #9f9f9f;margin-top: 12%;">
+    VS
+  </div>
+  <div class="col-md-5">
+    <ngx-player [player]="game?.player2" [game]="game?.id" [winner]="game?.winner === game?.player2.id"></ngx-player>
+  </div>
+</div>
+
+<ng-template #contentTemplate let-data>
+  <div class="winner">
+    <i class="fas fa-crown" style="color: gold;"></i>
+    <p>The winner is: {{ data.text }}</p>
+  </div>
+</ng-template>

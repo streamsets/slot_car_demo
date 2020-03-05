@@ -1,0 +1,2979 @@
+{
+  "schemaVersion" : 6,
+  "version" : 16,
+  "pipelineId" : "gameapi496eb923-2e5e-494b-88ce-2b92bb6ca0c9",
+  "title" : "game api",
+  "description" : "Usage:\n\nGET Request:\n���  ~ curl -i -X GET http://localhost:8000/rest/v1/user --header \"X-SDC-APPLICATION-ID:microservice\"\nHTTP/1.1 200 OK\nDate: Sat, 21 Jul 2018 17:50:15 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":200,\"data\":[{\"ID\":\"1\",\"NAME\":\"Sample User Name\",\"AGE\":\"37\",\"ADDRESS\":\"1234 San Francisco\"}],\"error\":[],\"errorMessage\":null}\n\n\nPOST Request:\n���  ~ curl -i -X POST http://localhost:8000/rest/v1/user --header \"X-SDC-APPLICATION-ID:microservice\" -d '{\"ID\":1, \"NAME\": \"Sample Name\", \"AGE\":34, \"ADDRESS\": \"2333 San Francisco\"}'\nHTTP/1.1 200 OK\nDate: Sat, 21 Jul 2018 17:51:42 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":200,\"data\":[{\"ID\":1,\"NAME\":\"Sample Name\",\"AGE\":34,\"ADDRESS\":\"2333 San Francisco\",\"sampleData\":\"POST Request Processed\"}],\"error\":[],\"errorMessage\":null}\n\nBad Request:\n���  ~ curl -i -X GET http://localhost:8000/invalidPath --header \"X-SDC-APPLICATION-ID:microservice\"\nHTTP/1.1 400 Bad Request\nDate: Sat, 21 Jul 2018 17:48:53 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":400,\"data\":[{}],\"error\":[],\"errorMessage\":null}",
+  "uuid" : "ba6f62c5-cc0d-4a08-a536-3f5d14886f0b",
+  "configuration" : [ {
+    "name" : "executionMode",
+    "value" : "STANDALONE"
+  }, {
+    "name" : "edgeHttpUrl",
+    "value" : "http://localhost:18633"
+  }, {
+    "name" : "deliveryGuarantee",
+    "value" : "AT_LEAST_ONCE"
+  }, {
+    "name" : "shouldRetry",
+    "value" : true
+  }, {
+    "name" : "retryAttempts",
+    "value" : -1
+  }, {
+    "name" : "notifyOnStates",
+    "value" : [ "RUN_ERROR", "STOPPED", "FINISHED" ]
+  }, {
+    "name" : "emailIDs",
+    "value" : [ ]
+  }, {
+    "name" : "constants",
+    "value" : [ {
+      "key" : "database",
+      "value" : "jdbc:mysql://db:3306/racing"
+    }, {
+      "key" : "redis",
+      "value" : "http://redis:6379"
+    } ]
+  }, {
+    "name" : "errorRecordPolicy",
+    "value" : "ORIGINAL_RECORD"
+  }, {
+    "name" : "workerCount",
+    "value" : 0
+  }, {
+    "name" : "clusterSlaveMemory",
+    "value" : 2048
+  }, {
+    "name" : "clusterSlaveJavaOpts",
+    "value" : "-XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Dlog4j.debug"
+  }, {
+    "name" : "clusterLauncherEnv",
+    "value" : [ ]
+  }, {
+    "name" : "mesosDispatcherURL",
+    "value" : null
+  }, {
+    "name" : "hdfsS3ConfDir",
+    "value" : null
+  }, {
+    "name" : "rateLimit",
+    "value" : 0
+  }, {
+    "name" : "maxRunners",
+    "value" : 0
+  }, {
+    "name" : "shouldCreateFailureSnapshot",
+    "value" : true
+  }, {
+    "name" : "runnerIdleTIme",
+    "value" : 60
+  }, {
+    "name" : "webhookConfigs",
+    "value" : [ ]
+  }, {
+    "name" : "sparkConfigs",
+    "value" : [ ]
+  }, {
+    "name" : "logLevel",
+    "value" : "INFO"
+  }, {
+    "name" : "amazonEMRConfig.userRegion",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.userRegionCustom",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.accessKey",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.secretKey",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.s3StagingUri",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.provisionNewCluster",
+    "value" : false
+  }, {
+    "name" : "amazonEMRConfig.clusterId",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.clusterPrefix",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.terminateCluster",
+    "value" : false
+  }, {
+    "name" : "amazonEMRConfig.loggingEnabled",
+    "value" : true
+  }, {
+    "name" : "amazonEMRConfig.s3LogUri",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.enableEMRDebugging",
+    "value" : true
+  }, {
+    "name" : "amazonEMRConfig.serviceRole",
+    "value" : "EMR_DefaultRole"
+  }, {
+    "name" : "amazonEMRConfig.jobFlowRole",
+    "value" : "EMR_EC2_DefaultRole"
+  }, {
+    "name" : "amazonEMRConfig.visibleToAllUsers",
+    "value" : true
+  }, {
+    "name" : "amazonEMRConfig.ec2SubnetId",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.masterSecurityGroup",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.slaveSecurityGroup",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.instanceCount",
+    "value" : 2
+  }, {
+    "name" : "amazonEMRConfig.masterInstanceType",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.masterInstanceTypeCustom",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.slaveInstanceType",
+    "value" : null
+  }, {
+    "name" : "amazonEMRConfig.slaveInstanceTypeCustom",
+    "value" : null
+  }, {
+    "name" : "clusterConfig.clusterType",
+    "value" : "LOCAL"
+  }, {
+    "name" : "clusterConfig.sparkMasterUrl",
+    "value" : "local[*]"
+  }, {
+    "name" : "clusterConfig.deployMode",
+    "value" : "CLIENT"
+  }, {
+    "name" : "clusterConfig.hadoopUserName",
+    "value" : "hdfs"
+  }, {
+    "name" : "clusterConfig.stagingDir",
+    "value" : "/streamsets"
+  }, {
+    "name" : "databricksConfig.baseUrl",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.credentialType",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.username",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.password",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.token",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.clusterConfig",
+    "value" : "{\n    \"num_workers\": 8,\n    \"spark_version\": \"5.3.x-scala2.11\",\n    \"node_type_id\": \"i3.xlarge\"\n}"
+  }, {
+    "name" : "livyConfig.baseUrl",
+    "value" : null
+  }, {
+    "name" : "livyConfig.username",
+    "value" : null
+  }, {
+    "name" : "livyConfig.password",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.provisionNewCluster",
+    "value" : true
+  }, {
+    "name" : "databricksConfig.clusterId",
+    "value" : null
+  }, {
+    "name" : "databricksConfig.terminateCluster",
+    "value" : false
+  }, {
+    "name" : "ludicrousMode",
+    "value" : false
+  }, {
+    "name" : "ludicrousModeInputCount",
+    "value" : false
+  }, {
+    "name" : "advancedErrorHandling",
+    "value" : false
+  }, {
+    "name" : "triggerInterval",
+    "value" : 2000
+  }, {
+    "name" : "preprocessScript",
+    "value" : ""
+  }, {
+    "name" : "badRecordsHandling",
+    "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_tooriginresponse_ToErrorOriginResponseDTarget::1"
+  }, {
+    "name" : "statsAggregatorStage",
+    "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_StatsNullDTarget::1"
+  }, {
+    "name" : "startEventStage",
+    "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+  }, {
+    "name" : "stopEventStage",
+    "value" : "streamsets-datacollector-basic-lib::com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget::1"
+  }, {
+    "name" : "testOriginStage",
+    "value" : "streamsets-datacollector-dev-lib::com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource::3"
+  }, {
+    "name" : "clusterConfig.sparkAppName",
+    "value" : "${pipeline:title()}"
+  }, {
+    "name" : "clusterConfig.useYarnKerberosKeytab",
+    "value" : false
+  }, {
+    "name" : "clusterConfig.yarnKerberosKeytabSource",
+    "value" : "PROPERTIES_FILE"
+  }, {
+    "name" : "clusterConfig.yarnKerberosKeytab",
+    "value" : null
+  }, {
+    "name" : "clusterConfig.yarnKerberosPrincipal",
+    "value" : "name@DOMAIN"
+  } ],
+  "uiInfo" : {
+    "previewConfig" : {
+      "previewSource" : "CONFIGURED_SOURCE",
+      "batchSize" : 10,
+      "timeout" : 30000,
+      "writeToDestinations" : false,
+      "executeLifecycleEvents" : false,
+      "showHeader" : true,
+      "showFieldType" : true,
+      "rememberMe" : false,
+      "snapshotInfo" : {
+        "user" : "admin",
+        "id" : "snapshot1578656508054",
+        "label" : "Snapshot1",
+        "name" : "gameapicopyfe9abab4-4571-4642-bb57-aa7bbf9093fe",
+        "rev" : "0",
+        "timeStamp" : 1578656511597,
+        "inProgress" : false,
+        "batchNumber" : 1,
+        "failureSnapshot" : false
+      }
+    }
+  },
+  "fragments" : [ ],
+  "stages" : [ {
+    "instanceName" : "RESTService_01",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_origin_restservice_RestServiceDPushSource",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "httpConfigs.tlsConfigBean.tlsEnabled",
+      "value" : false
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.keyStoreFilePath",
+      "value" : null
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.keyStoreType",
+      "value" : "JKS"
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.keyStorePassword",
+      "value" : null
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.keyStoreAlgorithm",
+      "value" : "SunX509"
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.useDefaultProtocols",
+      "value" : true
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.protocols",
+      "value" : [ ]
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.useDefaultCiperSuites",
+      "value" : true
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.cipherSuites",
+      "value" : [ ]
+    }, {
+      "name" : "httpConfigs.port",
+      "value" : 8000
+    }, {
+      "name" : "httpConfigs.maxConcurrentRequests",
+      "value" : 10
+    }, {
+      "name" : "httpConfigs.appId",
+      "value" : "microservice"
+    }, {
+      "name" : "httpConfigs.appIdViaQueryParamAllowed",
+      "value" : false
+    }, {
+      "name" : "maxRequestSizeMB",
+      "value" : 100
+    }, {
+      "name" : "dataFormat",
+      "value" : "JSON"
+    }, {
+      "name" : "dataFormatConfig.compression",
+      "value" : "NONE"
+    }, {
+      "name" : "dataFormatConfig.filePatternInArchive",
+      "value" : "*"
+    }, {
+      "name" : "dataFormatConfig.charset",
+      "value" : "UTF-8"
+    }, {
+      "name" : "dataFormatConfig.removeCtrlChars",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.textMaxLineLen",
+      "value" : 1024
+    }, {
+      "name" : "dataFormatConfig.useCustomDelimiter",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.customDelimiter",
+      "value" : "\\r\\n"
+    }, {
+      "name" : "dataFormatConfig.includeCustomDelimiterInTheText",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.jsonContent",
+      "value" : "MULTIPLE_OBJECTS"
+    }, {
+      "name" : "dataFormatConfig.jsonMaxObjectLen",
+      "value" : 4096
+    }, {
+      "name" : "dataFormatConfig.csvFileFormat",
+      "value" : "CSV"
+    }, {
+      "name" : "dataFormatConfig.csvHeader",
+      "value" : "NO_HEADER"
+    }, {
+      "name" : "dataFormatConfig.csvAllowExtraColumns",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.csvExtraColumnPrefix",
+      "value" : "_extra_"
+    }, {
+      "name" : "dataFormatConfig.csvMaxObjectLen",
+      "value" : 1024
+    }, {
+      "name" : "dataFormatConfig.csvCustomDelimiter",
+      "value" : "|"
+    }, {
+      "name" : "dataFormatConfig.csvCustomEscape",
+      "value" : "\\"
+    }, {
+      "name" : "dataFormatConfig.csvCustomQuote",
+      "value" : "\""
+    }, {
+      "name" : "dataFormatConfig.csvEnableComments",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.csvCommentMarker",
+      "value" : "#"
+    }, {
+      "name" : "dataFormatConfig.csvIgnoreEmptyLines",
+      "value" : true
+    }, {
+      "name" : "dataFormatConfig.csvRecordType",
+      "value" : "LIST_MAP"
+    }, {
+      "name" : "dataFormatConfig.csvSkipStartLines",
+      "value" : 0
+    }, {
+      "name" : "dataFormatConfig.parseNull",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.nullConstant",
+      "value" : "\\\\N"
+    }, {
+      "name" : "dataFormatConfig.xmlRecordElement",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.includeFieldXpathAttributes",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.xPathNamespaceContext",
+      "value" : [ ]
+    }, {
+      "name" : "dataFormatConfig.outputFieldAttributes",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.xmlMaxObjectLen",
+      "value" : 4096
+    }, {
+      "name" : "dataFormatConfig.logMode",
+      "value" : "COMMON_LOG_FORMAT"
+    }, {
+      "name" : "dataFormatConfig.logMaxObjectLen",
+      "value" : 1024
+    }, {
+      "name" : "dataFormatConfig.retainOriginalLine",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.customLogFormat",
+      "value" : "%h %l %u %t \"%r\" %>s %b"
+    }, {
+      "name" : "dataFormatConfig.regex",
+      "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
+    }, {
+      "name" : "dataFormatConfig.fieldPathsToGroupName",
+      "value" : [ {
+        "fieldPath" : "/",
+        "group" : 1
+      } ]
+    }, {
+      "name" : "dataFormatConfig.grokPatternDefinition",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.grokPattern",
+      "value" : "%{COMMONAPACHELOG}"
+    }, {
+      "name" : "dataFormatConfig.onParseError",
+      "value" : "ERROR"
+    }, {
+      "name" : "dataFormatConfig.maxStackTraceLines",
+      "value" : 50
+    }, {
+      "name" : "dataFormatConfig.enableLog4jCustomLogFormat",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.log4jCustomLogFormat",
+      "value" : "%r [%t] %-5p %c %x - %m%n"
+    }, {
+      "name" : "dataFormatConfig.avroSchema",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.schemaRegistryUrls",
+      "value" : [ ]
+    }, {
+      "name" : "dataFormatConfig.schemaLookupMode",
+      "value" : "SUBJECT"
+    }, {
+      "name" : "dataFormatConfig.subject",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.schemaId",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.protoDescriptorFile",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.messageType",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.isDelimited",
+      "value" : true
+    }, {
+      "name" : "dataFormatConfig.binaryMaxObjectLen",
+      "value" : 1024
+    }, {
+      "name" : "dataFormatConfig.datagramMode",
+      "value" : "SYSLOG"
+    }, {
+      "name" : "dataFormatConfig.typesDbPath",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.convertTime",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.excludeInterval",
+      "value" : true
+    }, {
+      "name" : "dataFormatConfig.authFilePath",
+      "value" : null
+    }, {
+      "name" : "dataFormatConfig.netflowOutputValuesMode",
+      "value" : "RAW_AND_INTERPRETED"
+    }, {
+      "name" : "dataFormatConfig.maxTemplateCacheSize",
+      "value" : -1
+    }, {
+      "name" : "dataFormatConfig.templateCacheTimeoutMs",
+      "value" : -1
+    }, {
+      "name" : "dataFormatConfig.netflowOutputValuesModeDatagram",
+      "value" : "RAW_AND_INTERPRETED"
+    }, {
+      "name" : "dataFormatConfig.maxTemplateCacheSizeDatagram",
+      "value" : -1
+    }, {
+      "name" : "dataFormatConfig.templateCacheTimeoutMsDatagram",
+      "value" : -1
+    }, {
+      "name" : "dataFormatConfig.wholeFileMaxObjectLen",
+      "value" : 8192
+    }, {
+      "name" : "dataFormatConfig.rateLimit",
+      "value" : "-1"
+    }, {
+      "name" : "dataFormatConfig.excelHeader",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataFormat",
+      "value" : "JSON"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.charset",
+      "value" : "UTF-8"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvFileFormat",
+      "value" : "CSV"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvHeader",
+      "value" : "NO_HEADER"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvReplaceNewLines",
+      "value" : true
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvReplaceNewLinesString",
+      "value" : " "
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvCustomDelimiter",
+      "value" : "|"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvCustomEscape",
+      "value" : "\\"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvCustomQuote",
+      "value" : "\""
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.jsonMode",
+      "value" : "MULTIPLE_OBJECTS"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.textFieldPath",
+      "value" : "/text"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.textRecordSeparator",
+      "value" : "\\n"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.textFieldMissingAction",
+      "value" : "ERROR"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.textEmptyLineIfNull",
+      "value" : false
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.avroSchemaSource",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.avroSchema",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.registerSchema",
+      "value" : false
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.schemaRegistryUrlsForRegistration",
+      "value" : [ ]
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.schemaRegistryUrls",
+      "value" : [ ]
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.schemaLookupMode",
+      "value" : "SUBJECT"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.subject",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.subjectToRegister",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.schemaId",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.includeSchema",
+      "value" : true
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.avroCompression",
+      "value" : "NULL"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.binaryFieldPath",
+      "value" : "/"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.protoDescriptorFile",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.messageType",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.fileNameEL",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.wholeFileExistsAction",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.includeChecksumInTheEvents",
+      "value" : false
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.checksumAlgorithm",
+      "value" : "MD5"
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.xmlPrettyPrint",
+      "value" : true
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.xmlValidateSchema",
+      "value" : false
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.xmlSchema",
+      "value" : null
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.trustStoreFilePath",
+      "value" : ""
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.trustStoreType",
+      "value" : "JKS"
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.trustStorePassword",
+      "value" : ""
+    }, {
+      "name" : "httpConfigs.tlsConfigBean.trustStoreAlgorithm",
+      "value" : "SunX509"
+    }, {
+      "name" : "httpConfigs.needClientAuth",
+      "value" : false
+    }, {
+      "name" : "responseConfig.sendRawResponse",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.multiCharacterFieldDelimiter",
+      "value" : "||"
+    }, {
+      "name" : "dataFormatConfig.multiCharacterLineDelimiter",
+      "value" : "${str:unescapeJava('\\\\n')}"
+    }, {
+      "name" : "dataFormatConfig.avroSkipUnionIndex",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.excelSkipCellsWithNoHeader",
+      "value" : false
+    }, {
+      "name" : "dataFormatConfig.excelReadAllSheets",
+      "value" : true
+    }, {
+      "name" : "dataFormatConfig.excelSheetNames",
+      "value" : [ ]
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.csvQuoteMode",
+      "value" : "MINIMAL"
+    }, {
+      "name" : "dataFormatConfig.basicAuth",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.basicAuthUserInfo",
+      "value" : null
+    }, {
+      "name" : "responseConfig.dataGeneratorFormatConfig.basicAuthUserInfoForRegistration",
+      "value" : null
+    } ],
+    "uiInfo" : {
+      "description" : "",
+      "label" : "REST Service 1",
+      "xPos" : 60,
+      "yPos" : 50,
+      "stageType" : "SOURCE"
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ "RESTService_01OutputLane15278905110860" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "GroovyEvaluator_01",
+    "library" : "streamsets-datacollector-groovy_2_4-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_groovy_GroovyDProcessor",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "processingMode",
+      "value" : "BATCH"
+    }, {
+      "name" : "initScript",
+      "value" : "/*\n * Available objects:\n *   sdc.state: A Map<String, Object> that is preserved between invocations of this script.\n *          Useful for caching bits of data, e.g. counters.\n *   sdc.log.<level>(msg, obj...): Use instead of println to send log messages to the log4j log\n *                             instead of stdout.\n *                             loglevel is any log4j level: e.g. info, warn, error, trace.\n *   sdc.getFieldNull(Record, 'field path'): Receive a constant defined above\n *                          to check if the field is typed field with value null\n *   sdc.createMap(boolean listMap): Create a map for use as a field in a record.\n *                          Pass true to this function to create a list map (ordered map)\n *   sdc.createEvent(String type, int version): Creates a new event.\n *                          Create new empty event with standard headers.\n *   sdc.toEvent(Record): Send event to event stream\n *                          Only events created with sdc.createEvent are supported.\n *   sdc.pipelineParameters(): Map with pipeline runtime parameters.\n */\n\n// sdc.state['connection'] = new Connection().open();"
+    }, {
+      "name" : "script",
+      "value" : "/*\n * Available constants:\n *   They are to assign a type to a field with a value null.\n *   sdc.NULL_BOOLEAN, sdc.NULL_CHAR, sdc.NULL_BYTE, sdc.NULL_SHORT, sdc.NULL_INTEGER, sdc.NULL_LONG,\n *   sdc.NULL_FLOAT, sdc.NULL_DOUBLE, sdc.NULL_DATE, sdc.NULL_DATETIME, sdc.NULL_TIME, sdc.NULL_DECIMAL,\n *   dsc.NULL_BYTE_ARRAY, sdc.NULL_STRING, sdc.NULL_LIST, sdc.NULL_MAP\n *\n * Available objects:\n *   sdc.records: A collection of Records to process. Depending on the processing mode\n *            it may have 1 record or all the records in the batch (default).\n *\n *   sdc.state: A Map<String, Object> that is preserved between invocations of this script.\n *          Useful for caching bits of data, e.g. counters.\n *\n *   sdc.log.<level>(msg, obj...): Use instead of println to send log messages to the log4j log\n *                             instead of stdout.\n *                             loglevel is any log4j level: e.g. info, warn, error, trace.\n *   sdc.output.write(Record): Writes a record to the processor output.\n *\n *   sdc.error.write(Record, message): Writes a record to the error pipeline.\n *\n *   sdc.getFieldNull(Record, 'field path'): Receive a constant defined above\n *                          to check if the field is typed field with value null\n *\n *   sdc.createRecord(String recordId): Creates a new record.\n *                          Pass a recordId to uniquely identify the record and include enough information to track down the record source.\n *   sdc.createMap(boolean listMap): Create a map for use as a field in a record.\n *                          Pass true to this function to create a list map (ordered map)\n *\n *   sdc.createEvent(String type, int version): Creates a new event.\n *                          Create new empty event with standard headers.\n *   sdc.toEvent(Record): Send event to event stream\n *                          Only events created with sdcFunctions.createEvent are supported.\n *   sdc.isPreview(): Determine if pipeline is in preview mode.\n *   sdc.pipelineParameters(): Map with pipeline runtime parameters.\n *\n * Available Record Header Variables:\n *   record.attributes: a map of record header attributes.\n *   record.<header name>: get the value of 'header name'.\n */\n\ndef deepPrune(Map map) {\n    map.collectEntries { k, v -> [k, v instanceof Map ? deepPrune(v) : v]}\n       .findAll { k, v -> v }\n}\n\n// Sample Groovy code\nrecords = sdc.records\nfor (record in records) {\n    try {\n      \tdef queryParams = record.attributes['queryString'].split('&')\n      \tdef mapParams = queryParams.collectEntries{ param -> \n      \t\tparam.split('=', 2).collect{ URLDecoder.decode(it) }\n      \t}\n      \tdef cleanMap = deepPrune(mapParams)\n           \n      \tif (mapParams.size() > 0) {\n        \trecord.value[\"query\"] = cleanMap\n      \t}\n      \t\n        // Change record root field value to a String value.\n        // record.value = \"Hello\"\n\n        // Change record root field value to a map value and create an entry\n        // record.value = [firstName:'John', lastName:'Doe', age:25]\n\n        // Access a map entry\n        // record.value['fullName'] = record.value['firstName'] + ' ' + record.value['lastName']\n\n        // Create a list entry\n        // record.value['myList'] = [1, 2, 3, 4]\n\n        // Modify an existing list entry\n        // record.value['myList'][0] = 5\n\n        // Assign a integer type to a field and value null\n        // record.value['null_int'] = sdc.NULL_INTEGER\n\n        // Check if the field is NULL_INTEGER. If so, assign a value\n        // if (sdc.getFieldNull(record, '/null_int') == sdc.NULL_INTEGER)\n        //    record.value['null_int'] = 123\n\n        // Direct access to the underlying Data Collector Record. Use for read-only operations.\n        // fieldAttr = record.sdcRecord.get('/value').getAttribute('attr')\n\n        // Create a new record with map field\n        // newRecord = sdc.createRecord(record.sourceId + ':newRecordId')\n        // newRecord.value = ['field1':'val1', 'field2' : 'val2']\n        // newMap = sdc.createMap(true)\n        // newMap['field'] = 'val'\n        // newRecord.value['field2'] =  newMap\n        // sdc.output.write(newRecord)\n\n        // Applies if the source uses WHOLE_FILE as data format\n        // input_stream = record.value['fileRef'].getInputStream();\n        // try {\n        //     input_stream.read(); //Process the input stream\n        // } finally {\n        //     input_stream.close();\n        // }\n\n        // Modify a record header attribute entry\n        // record.attributes['name'] = record.attributes['first_name'] + ' ' + record.attributes['last_name']\n\n        // Get a record header with field names ex. get sourceId and errorCode\n        // String sourceId = record.sourceId\n        // String errorCode = ''\n        // if (record.errorCode) {\n        //     errorCode = record.errorCode\n        // }\n\n        // Write a record to the processor output\n        sdc.output.write(record)\n    } catch (e) {\n        // Write a record to the error pipeline\n        sdc.log.error(e.toString(), e)\n        sdc.error.write(record, e.toString())\n    }\n}"
+    }, {
+      "name" : "destroyScript",
+      "value" : "/*\n * Available objects:\n *   sdc.state: A Map<String, Object> that is preserved between invocations of this script.\n *          Useful for caching bits of data, e.g. counters.\n *   sdc.log.<level>(msg, obj...): Use instead of println to send log messages to the log4j log\n *                             instead of stdout.\n *                             loglevel is any log4j level: e.g. info, warn, error, trace.\n *   sdc.getFieldNull(Record, 'field path'): Receive a constant defined above\n *                          to check if the field is typed field with value null\n *   sdc.createMap(boolean listMap): Create a map for use as a field in a record.\n *                          Pass true to this function to create a list map (ordered map)\n *   sdc.createEvent(String type, int version): Creates a new event.\n *                          Create new empty event with standard headers.\n *   sdc.toEvent(Record): Send event to event stream\n *                          Only events created with sdc.createEvent are supported.\n *   sdc.pipelineParameters(): Map with pipeline runtime parameters.\n */\n\n// sdc.state.connection.close()"
+    }, {
+      "name" : "scriptRecordType",
+      "value" : "NATIVE_OBJECTS"
+    }, {
+      "name" : "invokeDynamic",
+      "value" : false
+    }, {
+      "name" : "userParams",
+      "value" : [ ]
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 50,
+      "stageType" : "PROCESSOR",
+      "icon" : "groovy.png",
+      "description" : "",
+      "label" : "Groovy Evaluator 1",
+      "xPos" : 280
+    },
+    "inputLanes" : [ "RESTService_01OutputLane15278905110860" ],
+    "outputLanes" : [ "GroovyEvaluator_01OutputLane15786560661630" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "HTTPRouter_01",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_httprouter_HttpRouterDProcessor",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "routerLaneConfigs",
+      "value" : [ {
+        "outputLane" : "HTTPRouter_01OutputLane1535135657986",
+        "httpMethod" : "GET",
+        "pathParam" : "/rest/v1/current_game"
+      }, {
+        "outputLane" : "HTTPRouter_01OutputLane1579011733108",
+        "httpMethod" : "GET",
+        "pathParam" : "/rest/v1/laps"
+      }, {
+        "outputLane" : "HTTPRouter_01OutputLane1579082627140",
+        "httpMethod" : "GET",
+        "pathParam" : "/rest/v1/games"
+      }, {
+        "outputLane" : "HTTPRouter_01OutputLane1579105526643",
+        "httpMethod" : "POST",
+        "pathParam" : "/rest/v1/newgame"
+      }, {
+        "outputLane" : "HTTPRouter_01OutputLane1579107943536",
+        "httpMethod" : "GET",
+        "pathParam" : "/rest/v1/bestlaps"
+      }, {
+        "outputLane" : "HTTPRouter_01OutputLane1579107973460",
+        "httpMethod" : "GET",
+        "pathParam" : "/rest/v1/bestraces"
+      } ]
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "description" : "",
+      "label" : "HTTP Router 1",
+      "xPos" : 500,
+      "yPos" : 230,
+      "stageType" : "PROCESSOR"
+    },
+    "inputLanes" : [ "GroovyEvaluator_01OutputLane15786560661630" ],
+    "outputLanes" : [ "HTTPRouter_01OutputLane1535135657986", "HTTPRouter_01OutputLane1579011733108", "HTTPRouter_01OutputLane1579082627140", "HTTPRouter_01OutputLane1579105526643", "HTTPRouter_01OutputLane1579107943536", "HTTPRouter_01OutputLane1579107973460" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_01",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "SELECT g.* FROM games g\nJOIN current_game c ON g.id = c.game;"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "id",
+        "field" : "/id"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "player1",
+        "field" : "/p1"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "player2",
+        "field" : "/p2"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "start_time",
+        "field" : "/start_time"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "end_time",
+        "field" : "/end_time"
+      } ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "FIRST_ONLY"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : false
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : null
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 1
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 40,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Get current game",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "HTTPRouter_01OutputLane1535135657986" ],
+    "outputLanes" : [ "JDBCLookup_01OutputLane15790069351970" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "ExpressionEvaluator_01",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "expressionProcessorConfigs",
+      "value" : [ {
+        "fieldToSet" : "/player1",
+        "expression" : "${emptyMap()}"
+      }, {
+        "fieldToSet" : "/player2",
+        "expression" : "${emptyMap()}"
+      } ]
+    }, {
+      "name" : "headerAttributeConfigs",
+      "value" : [ { } ]
+    }, {
+      "name" : "fieldAttributeConfigs",
+      "value" : [ {
+        "fieldToSet" : "/"
+      } ]
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 40,
+      "stageType" : "PROCESSOR",
+      "icon" : "expression.png",
+      "description" : "",
+      "label" : "Expression Evaluator 1",
+      "xPos" : 940
+    },
+    "inputLanes" : [ "JDBCLookup_01OutputLane15790069351970" ],
+    "outputLanes" : [ "ExpressionEvaluator_01OutputLane15790098463060" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_02",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "select * FROM players\nWHERE id = ${record:value('/p1')};"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "id",
+        "field" : "/player1/id"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "name",
+        "field" : "/player1/name"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "email",
+        "field" : "/player1/email"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "phone",
+        "field" : "/player1/phone"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "optin",
+        "field" : "/player1/optin"
+      } ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "FIRST_ONLY"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : true
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : "EXPIRE_AFTER_ACCESS"
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 10
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 40,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Get player 1",
+      "xPos" : 1160
+    },
+    "inputLanes" : [ "ExpressionEvaluator_01OutputLane15790098463060" ],
+    "outputLanes" : [ "JDBCLookup_02OutputLane15790077353260" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_03",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "select * FROM players\nWHERE id = ${record:value('/p2')};"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "id",
+        "field" : "/player2/id"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "name",
+        "field" : "/player2/name"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "email",
+        "field" : "/player2/email"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "phone",
+        "field" : "/player2/phone"
+      }, {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "optin",
+        "field" : "/player2/optin"
+      } ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "FIRST_ONLY"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : true
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : "EXPIRE_AFTER_ACCESS"
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 1
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 40,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Get player 2",
+      "xPos" : 1380
+    },
+    "inputLanes" : [ "JDBCLookup_02OutputLane15790077353260" ],
+    "outputLanes" : [ "JDBCLookup_03OutputLane15790078445630" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_04",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "SELECT * FROM laps\nWHERE game = ${record:value('/query/game')} AND player = ${record:value('/query/player')};"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "SPLIT_INTO_MULTIPLE_RECORDS"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : false
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : null
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 1
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 170,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "get laps",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "HTTPRouter_01OutputLane1579011733108" ],
+    "outputLanes" : [ "JDBCLookup_04OutputLane15790117509500" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_05",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "SELECT player, MIN(`time`) as t\nFROM laps\nWHERE game = ${record:value('/id')} AND `number` = (\n\tSELECT MAX(`number`) from laps WHERE game = ${record:value('/id')}\n)\nGROUP BY player\nORDER BY t\nLIMIT 1;"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "player",
+        "field" : "/winner"
+      } ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "FIRST_ONLY"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : true
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : "EXPIRE_AFTER_ACCESS"
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 1
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 40,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Get winner",
+      "xPos" : 1600
+    },
+    "inputLanes" : [ "JDBCLookup_03OutputLane15790078445630" ],
+    "outputLanes" : [ "JDBCLookup_05OutputLane15790194255100" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "FieldRemover_02",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "filterOperation",
+      "value" : "REMOVE"
+    }, {
+      "name" : "fields",
+      "value" : [ "/t", "/p1", "/p2" ]
+    }, {
+      "name" : "constant",
+      "value" : null
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 40,
+      "stageType" : "PROCESSOR",
+      "icon" : "filter.png",
+      "description" : "",
+      "label" : "Field Remover 1",
+      "xPos" : 1820
+    },
+    "inputLanes" : [ "JDBCLookup_05OutputLane15790194255100" ],
+    "outputLanes" : [ "FieldRemover_02OutputLane15790767353070" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_06",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "SELECT\n\tg.id,\n\tp1. `name` AS player1,\n\tp2. `name` player2,\n\tg.start_time,\n    g.stop_time,\n\twinner.name AS winner\nFROM\n\tgames g\n\tJOIN players p1 ON p1.id = g.player1\n\tJOIN players p2 ON p2.id = g.player2\n\tJOIN (\n\t\tSELECT\n\t\t\tgame,\n\t\t\tp. `name`\n\t\tFROM\n\t\t\twinners w\n\t\t\tJOIN players p ON p.id = w.player) winner ON winner.game = g.id\nORDER BY\n\tg.id DESC;"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "SPLIT_INTO_MULTIPLE_RECORDS"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : false
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : null
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 1
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 300,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "games",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "HTTPRouter_01OutputLane1579082627140" ],
+    "outputLanes" : [ "JDBCLookup_06OutputLane15790826435060" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCTee_01",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbctee_JdbcTeeDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "schema",
+      "value" : null
+    }, {
+      "name" : "tableNameTemplate",
+      "value" : "players"
+    }, {
+      "name" : "customMappings",
+      "value" : [ {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "name",
+        "field" : "/player1/name"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "email",
+        "field" : "/player1/email"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "phone",
+        "field" : "/player1/phone"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "optin",
+        "field" : "/player1/optin"
+      } ]
+    }, {
+      "name" : "generatedColumnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "id",
+        "field" : "/player1/id"
+      } ]
+    }, {
+      "name" : "encloseTableName",
+      "value" : false
+    }, {
+      "name" : "changeLogFormat",
+      "value" : "NONE"
+    }, {
+      "name" : "defaultOperation",
+      "value" : "INSERT"
+    }, {
+      "name" : "unsupportedAction",
+      "value" : "DISCARD"
+    }, {
+      "name" : "useMultiRowOp",
+      "value" : true
+    }, {
+      "name" : "maxPrepStmtParameters",
+      "value" : -1
+    }, {
+      "name" : "rollbackOnError",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 430,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "insert player 1",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "HTTPRouter_01OutputLane1579105526643" ],
+    "outputLanes" : [ "JDBCTee_01OutputLane15791056075120" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCTee_02",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbctee_JdbcTeeDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "schema",
+      "value" : null
+    }, {
+      "name" : "tableNameTemplate",
+      "value" : "players"
+    }, {
+      "name" : "customMappings",
+      "value" : [ {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "name",
+        "field" : "/player2/name"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "email",
+        "field" : "/player2/email"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "phone",
+        "field" : "/player2/phone"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "optin",
+        "field" : "/player2/optin"
+      } ]
+    }, {
+      "name" : "generatedColumnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "id",
+        "field" : "/player2/id"
+      } ]
+    }, {
+      "name" : "encloseTableName",
+      "value" : false
+    }, {
+      "name" : "changeLogFormat",
+      "value" : "NONE"
+    }, {
+      "name" : "defaultOperation",
+      "value" : "INSERT"
+    }, {
+      "name" : "unsupportedAction",
+      "value" : "DISCARD"
+    }, {
+      "name" : "useMultiRowOp",
+      "value" : true
+    }, {
+      "name" : "maxPrepStmtParameters",
+      "value" : -1
+    }, {
+      "name" : "rollbackOnError",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 430,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "insert player 2",
+      "xPos" : 940
+    },
+    "inputLanes" : [ "JDBCTee_01OutputLane15791056075120" ],
+    "outputLanes" : [ "JDBCTee_02OutputLane15791057323630" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCTee_03",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbctee_JdbcTeeDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "schema",
+      "value" : null
+    }, {
+      "name" : "tableNameTemplate",
+      "value" : "games"
+    }, {
+      "name" : "customMappings",
+      "value" : [ {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "player1",
+        "field" : "/player1/id"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "player2",
+        "field" : "/player2/id"
+      } ]
+    }, {
+      "name" : "generatedColumnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "id",
+        "field" : "/game"
+      } ]
+    }, {
+      "name" : "encloseTableName",
+      "value" : false
+    }, {
+      "name" : "changeLogFormat",
+      "value" : "NONE"
+    }, {
+      "name" : "defaultOperation",
+      "value" : "INSERT"
+    }, {
+      "name" : "unsupportedAction",
+      "value" : "DISCARD"
+    }, {
+      "name" : "useMultiRowOp",
+      "value" : true
+    }, {
+      "name" : "maxPrepStmtParameters",
+      "value" : -1
+    }, {
+      "name" : "rollbackOnError",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 430,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Create game",
+      "xPos" : 1160
+    },
+    "inputLanes" : [ "JDBCTee_02OutputLane15791057323630" ],
+    "outputLanes" : [ "JDBCTee_03OutputLane15791058198630" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "ExpressionEvaluator_02",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "expressionProcessorConfigs",
+      "value" : [ {
+        "fieldToSet" : "/current_game_id",
+        "expression" : "1"
+      } ]
+    }, {
+      "name" : "headerAttributeConfigs",
+      "value" : [ { } ]
+    }, {
+      "name" : "fieldAttributeConfigs",
+      "value" : [ {
+        "fieldToSet" : "/"
+      } ]
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 430,
+      "stageType" : "PROCESSOR",
+      "icon" : "expression.png",
+      "description" : "",
+      "label" : "Expression Evaluator 2",
+      "xPos" : 1380
+    },
+    "inputLanes" : [ "JDBCTee_03OutputLane15791058198630" ],
+    "outputLanes" : [ "ExpressionEvaluator_02OutputLane15791062683910" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCTee_04",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbctee_JdbcTeeDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "schema",
+      "value" : null
+    }, {
+      "name" : "tableNameTemplate",
+      "value" : "current_game"
+    }, {
+      "name" : "customMappings",
+      "value" : [ {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "game",
+        "field" : "/game"
+      }, {
+        "paramValue" : "?",
+        "dataType" : "USE_COLUMN_TYPE",
+        "columnName" : "id",
+        "defaultValue" : "1",
+        "field" : "/current_game_id"
+      } ]
+    }, {
+      "name" : "generatedColumnMappings",
+      "value" : [ {
+        "dataType" : "USE_COLUMN_TYPE"
+      } ]
+    }, {
+      "name" : "encloseTableName",
+      "value" : false
+    }, {
+      "name" : "changeLogFormat",
+      "value" : "NONE"
+    }, {
+      "name" : "defaultOperation",
+      "value" : "UPDATE"
+    }, {
+      "name" : "unsupportedAction",
+      "value" : "DISCARD"
+    }, {
+      "name" : "useMultiRowOp",
+      "value" : true
+    }, {
+      "name" : "maxPrepStmtParameters",
+      "value" : -1
+    }, {
+      "name" : "rollbackOnError",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 430,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Set current game",
+      "xPos" : 1600
+    },
+    "inputLanes" : [ "ExpressionEvaluator_02OutputLane15791062683910" ],
+    "outputLanes" : [ "JDBCTee_04OutputLane15791063034900" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "ExpressionEvaluator_03",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_expression_ExpressionDProcessor",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "expressionProcessorConfigs",
+      "value" : [ {
+        "fieldToSet" : "/key1",
+        "expression" : "1"
+      }, {
+        "fieldToSet" : "/key2",
+        "expression" : "2"
+      }, {
+        "fieldToSet" : "/value",
+        "expression" : ""
+      } ]
+    }, {
+      "name" : "headerAttributeConfigs",
+      "value" : [ { } ]
+    }, {
+      "name" : "fieldAttributeConfigs",
+      "value" : [ {
+        "fieldToSet" : "/"
+      } ]
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 430,
+      "stageType" : "PROCESSOR",
+      "icon" : "expression.png",
+      "description" : "",
+      "label" : "Expression Evaluator 3",
+      "xPos" : 1820
+    },
+    "inputLanes" : [ "JDBCTee_04OutputLane15791063034900" ],
+    "outputLanes" : [ "ExpressionEvaluator_03OutputLane15791064224240" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "Redis_01",
+    "library" : "streamsets-datacollector-redis-lib",
+    "stageName" : "com_streamsets_pipeline_stage_destination_redis_RedisDTarget",
+    "stageVersion" : "2",
+    "configuration" : [ {
+      "name" : "conf.uri",
+      "value" : "${redis}"
+    }, {
+      "name" : "conf.connectionTimeout",
+      "value" : 60
+    }, {
+      "name" : "conf.maxRetries",
+      "value" : 0
+    }, {
+      "name" : "conf.maxBatchWaitTime",
+      "value" : "${5 * SECONDS}"
+    }, {
+      "name" : "conf.mode",
+      "value" : "BATCH"
+    }, {
+      "name" : "conf.redisFieldMapping",
+      "value" : [ {
+        "keyExpr" : "/key1",
+        "valExpr" : "/value",
+        "dataType" : "STRING",
+        "ttl" : 0
+      }, {
+        "keyExpr" : "/key2",
+        "valExpr" : "/value",
+        "dataType" : "STRING",
+        "ttl" : 0
+      } ]
+    }, {
+      "name" : "conf.dataFormat",
+      "value" : "JSON"
+    }, {
+      "name" : "conf.channel",
+      "value" : [ ]
+    }, {
+      "name" : "conf.dataFormatConfig.charset",
+      "value" : "UTF-8"
+    }, {
+      "name" : "conf.dataFormatConfig.csvFileFormat",
+      "value" : "CSV"
+    }, {
+      "name" : "conf.dataFormatConfig.csvHeader",
+      "value" : "NO_HEADER"
+    }, {
+      "name" : "conf.dataFormatConfig.csvReplaceNewLines",
+      "value" : true
+    }, {
+      "name" : "conf.dataFormatConfig.csvReplaceNewLinesString",
+      "value" : " "
+    }, {
+      "name" : "conf.dataFormatConfig.csvCustomDelimiter",
+      "value" : "|"
+    }, {
+      "name" : "conf.dataFormatConfig.csvCustomEscape",
+      "value" : "\\"
+    }, {
+      "name" : "conf.dataFormatConfig.csvCustomQuote",
+      "value" : "\""
+    }, {
+      "name" : "conf.dataFormatConfig.csvQuoteMode",
+      "value" : "MINIMAL"
+    }, {
+      "name" : "conf.dataFormatConfig.jsonMode",
+      "value" : "MULTIPLE_OBJECTS"
+    }, {
+      "name" : "conf.dataFormatConfig.textFieldPath",
+      "value" : "/text"
+    }, {
+      "name" : "conf.dataFormatConfig.textRecordSeparator",
+      "value" : "\\n"
+    }, {
+      "name" : "conf.dataFormatConfig.textFieldMissingAction",
+      "value" : "ERROR"
+    }, {
+      "name" : "conf.dataFormatConfig.textEmptyLineIfNull",
+      "value" : false
+    }, {
+      "name" : "conf.dataFormatConfig.avroSchemaSource",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.avroSchema",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.registerSchema",
+      "value" : false
+    }, {
+      "name" : "conf.dataFormatConfig.schemaRegistryUrlsForRegistration",
+      "value" : [ ]
+    }, {
+      "name" : "conf.dataFormatConfig.schemaRegistryUrls",
+      "value" : [ ]
+    }, {
+      "name" : "conf.dataFormatConfig.basicAuthUserInfo",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.schemaLookupMode",
+      "value" : "SUBJECT"
+    }, {
+      "name" : "conf.dataFormatConfig.subject",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.subjectToRegister",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.basicAuthUserInfoForRegistration",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.schemaId",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.includeSchema",
+      "value" : true
+    }, {
+      "name" : "conf.dataFormatConfig.avroCompression",
+      "value" : "NULL"
+    }, {
+      "name" : "conf.dataFormatConfig.binaryFieldPath",
+      "value" : "/"
+    }, {
+      "name" : "conf.dataFormatConfig.protoDescriptorFile",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.messageType",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.fileNameEL",
+      "value" : null
+    }, {
+      "name" : "conf.dataFormatConfig.wholeFileExistsAction",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "conf.dataFormatConfig.includeChecksumInTheEvents",
+      "value" : false
+    }, {
+      "name" : "conf.dataFormatConfig.checksumAlgorithm",
+      "value" : "MD5"
+    }, {
+      "name" : "conf.dataFormatConfig.xmlPrettyPrint",
+      "value" : true
+    }, {
+      "name" : "conf.dataFormatConfig.xmlValidateSchema",
+      "value" : false
+    }, {
+      "name" : "conf.dataFormatConfig.xmlSchema",
+      "value" : null
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 430,
+      "stageType" : "TARGET",
+      "icon" : "redis.png",
+      "description" : "",
+      "label" : "reset Redis",
+      "xPos" : 2040
+    },
+    "inputLanes" : [ "ExpressionEvaluator_03OutputLane15791064224240" ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_07",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "SELECT * from best_players_laps\nORDER BY min_duration;"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "SPLIT_INTO_MULTIPLE_RECORDS"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : false
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : null
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 1
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 560,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Best player Lap",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "HTTPRouter_01OutputLane1579107943536" ],
+    "outputLanes" : [ "JDBCLookup_07OutputLane15791079995840" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "JDBCLookup_08",
+    "library" : "streamsets-datacollector-jdbc-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_jdbclookup_JdbcLookupDProcessor",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "query",
+      "value" : "SELECT * from best_players_races\nORDER BY sum_duration;"
+    }, {
+      "name" : "columnMappings",
+      "value" : [ ]
+    }, {
+      "name" : "multipleValuesBehavior",
+      "value" : "SPLIT_INTO_MULTIPLE_RECORDS"
+    }, {
+      "name" : "missingValuesBehavior",
+      "value" : "PASS_RECORD_ON"
+    }, {
+      "name" : "maxClobSize",
+      "value" : 1000
+    }, {
+      "name" : "maxBlobSize",
+      "value" : 1000
+    }, {
+      "name" : "hikariConfigBean.connectionString",
+      "value" : "${database}"
+    }, {
+      "name" : "hikariConfigBean.useCredentials",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.username",
+      "value" : "root"
+    }, {
+      "name" : "hikariConfigBean.password",
+      "value" : "streamsets"
+    }, {
+      "name" : "hikariConfigBean.driverProperties",
+      "value" : [ { } ]
+    }, {
+      "name" : "hikariConfigBean.driverClassName",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.connectionTestQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.maximumPoolSize",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.minIdle",
+      "value" : 1
+    }, {
+      "name" : "hikariConfigBean.connectionTimeout",
+      "value" : "${30 * SECONDS}"
+    }, {
+      "name" : "hikariConfigBean.idleTimeout",
+      "value" : "${10 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.maxLifetime",
+      "value" : "${30 * MINUTES}"
+    }, {
+      "name" : "hikariConfigBean.autoCommit",
+      "value" : false
+    }, {
+      "name" : "hikariConfigBean.readOnly",
+      "value" : true
+    }, {
+      "name" : "hikariConfigBean.initialQuery",
+      "value" : null
+    }, {
+      "name" : "hikariConfigBean.transactionIsolation",
+      "value" : "DEFAULT"
+    }, {
+      "name" : "cacheConfig.enabled",
+      "value" : false
+    }, {
+      "name" : "cacheConfig.maxSize",
+      "value" : -1
+    }, {
+      "name" : "cacheConfig.evictionPolicyType",
+      "value" : null
+    }, {
+      "name" : "cacheConfig.expirationTime",
+      "value" : 1
+    }, {
+      "name" : "cacheConfig.timeUnit",
+      "value" : "SECONDS"
+    }, {
+      "name" : "cacheConfig.retryOnCacheMiss",
+      "value" : false
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 690,
+      "stageType" : "PROCESSOR",
+      "icon" : "rdbms.png",
+      "description" : "",
+      "label" : "Best Races",
+      "xPos" : 720
+    },
+    "inputLanes" : [ "HTTPRouter_01OutputLane1579107973460" ],
+    "outputLanes" : [ "JDBCLookup_08OutputLane15791081366380" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "FieldRemover_01",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_processor_fieldfilter_FieldFilterDProcessor",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "filterOperation",
+      "value" : "REMOVE"
+    }, {
+      "name" : "fields",
+      "value" : [ "/query" ]
+    }, {
+      "name" : "constant",
+      "value" : null
+    }, {
+      "name" : "stageRequiredFields",
+      "value" : [ ]
+    }, {
+      "name" : "stageRecordPreconditions",
+      "value" : [ ]
+    } ],
+    "uiInfo" : {
+      "yPos" : 170,
+      "stageType" : "PROCESSOR",
+      "icon" : "filter.png",
+      "description" : "",
+      "label" : "remove query",
+      "xPos" : 2040
+    },
+    "inputLanes" : [ "JDBCLookup_04OutputLane15790117509500", "FieldRemover_02OutputLane15790767353070", "JDBCLookup_06OutputLane15790826435060", "JDBCTee_04OutputLane15791063034900", "JDBCLookup_07OutputLane15791079995840", "JDBCLookup_08OutputLane15791081366380" ],
+    "outputLanes" : [ "FieldRemover_01OutputLane15790118629160" ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  }, {
+    "instanceName" : "SendResponsetoOrigin_01",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_destination_tooriginresponse_ToOriginResponseDTarget",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "statusCode",
+      "value" : 200
+    } ],
+    "uiInfo" : {
+      "yPos" : 170,
+      "stageType" : "TARGET",
+      "icon" : "response.png",
+      "description" : "",
+      "label" : "Send Response to Origin 1",
+      "xPos" : 2260
+    },
+    "inputLanes" : [ "FieldRemover_01OutputLane15790118629160" ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  } ],
+  "errorStage" : {
+    "instanceName" : "SendtoOriginResponse_ErrorStage",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_destination_tooriginresponse_ToErrorOriginResponseDTarget",
+    "stageVersion" : "1",
+    "configuration" : [ {
+      "name" : "statusCode",
+      "value" : 400
+    } ],
+    "uiInfo" : {
+      "description" : "",
+      "label" : "Error Records - Send to Origin Response",
+      "xPos" : 500,
+      "yPos" : 50,
+      "stageType" : "TARGET"
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  },
+  "info" : {
+    "pipelineId" : "gameapi496eb923-2e5e-494b-88ce-2b92bb6ca0c9",
+    "title" : "game api",
+    "description" : "Usage:\n\nGET Request:\n���  ~ curl -i -X GET http://localhost:8000/rest/v1/user --header \"X-SDC-APPLICATION-ID:microservice\"\nHTTP/1.1 200 OK\nDate: Sat, 21 Jul 2018 17:50:15 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":200,\"data\":[{\"ID\":\"1\",\"NAME\":\"Sample User Name\",\"AGE\":\"37\",\"ADDRESS\":\"1234 San Francisco\"}],\"error\":[],\"errorMessage\":null}\n\n\nPOST Request:\n���  ~ curl -i -X POST http://localhost:8000/rest/v1/user --header \"X-SDC-APPLICATION-ID:microservice\" -d '{\"ID\":1, \"NAME\": \"Sample Name\", \"AGE\":34, \"ADDRESS\": \"2333 San Francisco\"}'\nHTTP/1.1 200 OK\nDate: Sat, 21 Jul 2018 17:51:42 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":200,\"data\":[{\"ID\":1,\"NAME\":\"Sample Name\",\"AGE\":34,\"ADDRESS\":\"2333 San Francisco\",\"sampleData\":\"POST Request Processed\"}],\"error\":[],\"errorMessage\":null}\n\nBad Request:\n���  ~ curl -i -X GET http://localhost:8000/invalidPath --header \"X-SDC-APPLICATION-ID:microservice\"\nHTTP/1.1 400 Bad Request\nDate: Sat, 21 Jul 2018 17:48:53 GMT\nContent-Type: application/json\nTransfer-Encoding: chunked\nServer: Jetty(9.4.2.v20170220)\n\n{\"httpStatusCode\":400,\"data\":[{}],\"error\":[],\"errorMessage\":null}",
+    "created" : 1579174111042,
+    "lastModified" : 1579179404726,
+    "creator" : "admin",
+    "lastModifier" : "admin",
+    "lastRev" : "0",
+    "uuid" : "cf401a21-5b49-46fd-b01b-0f8500dcbfa3",
+    "valid" : false,
+    "metadata" : {
+      "labels" : [ "Race_demo" ]
+    },
+    "name" : "gameapi496eb923-2e5e-494b-88ce-2b92bb6ca0c9",
+    "sdcVersion" : "3.13.0",
+    "sdcId" : "3d667fc2-3853-11ea-a551-d7f12a7f8c3d"
+  },
+  "metadata" : {
+    "labels" : [ "Race_demo" ]
+  },
+  "statsAggregatorStage" : {
+    "instanceName" : "Discard_StatsAggregatorStage",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_destination_devnull_StatsNullDTarget",
+    "stageVersion" : "1",
+    "configuration" : [ ],
+    "uiInfo" : {
+      "description" : "",
+      "label" : "Stats Aggregator - Discard",
+      "xPos" : 940,
+      "yPos" : 50,
+      "stageType" : "TARGET"
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  },
+  "startEventStages" : [ {
+    "instanceName" : "Discard_StartEventStage",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+    "stageVersion" : "1",
+    "configuration" : [ ],
+    "uiInfo" : {
+      "description" : "",
+      "label" : "Start Event - Discard",
+      "xPos" : 280,
+      "yPos" : 50,
+      "stageType" : "TARGET"
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  } ],
+  "stopEventStages" : [ {
+    "instanceName" : "Discard_StopEventStage",
+    "library" : "streamsets-datacollector-basic-lib",
+    "stageName" : "com_streamsets_pipeline_stage_destination_devnull_ToErrorNullDTarget",
+    "stageVersion" : "1",
+    "configuration" : [ ],
+    "uiInfo" : {
+      "description" : "",
+      "label" : "Stop Event - Discard",
+      "xPos" : 280,
+      "yPos" : 50,
+      "stageType" : "TARGET"
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ ],
+    "eventLanes" : [ ],
+    "services" : [ ]
+  } ],
+  "testOriginStage" : {
+    "instanceName" : "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource_TestOriginStage",
+    "library" : "streamsets-datacollector-dev-lib",
+    "stageName" : "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource",
+    "stageVersion" : "3",
+    "configuration" : [ {
+      "name" : "rawData",
+      "value" : "{\n  \"f1\": \"abc\",\n  \"f2\": \"xyz\",\n  \"f3\": \"lmn\"\n}"
+    }, {
+      "name" : "stopAfterFirstBatch",
+      "value" : false
+    }, {
+      "name" : "eventData",
+      "value" : null
+    }, {
+      "name" : "stageOnRecordError",
+      "value" : "TO_ERROR"
+    } ],
+    "uiInfo" : {
+      "stageType" : "SOURCE",
+      "label" : "Test Origin - Dev Raw Data Source"
+    },
+    "inputLanes" : [ ],
+    "outputLanes" : [ "com_streamsets_pipeline_stage_devtest_rawdata_RawDataDSource_TestOriginStageOutputLane1" ],
+    "eventLanes" : [ ],
+    "services" : [ {
+      "service" : "com.streamsets.pipeline.api.service.dataformats.DataFormatParserService",
+      "serviceVersion" : 1,
+      "configuration" : [ {
+        "name" : "displayFormats",
+        "value" : "DELIMITED,JSON,LOG,SDC_JSON,TEXT,XML"
+      }, {
+        "name" : "dataFormat",
+        "value" : "JSON"
+      }, {
+        "name" : "dataFormatConfig.compression",
+        "value" : "NONE"
+      }, {
+        "name" : "dataFormatConfig.filePatternInArchive",
+        "value" : "*"
+      }, {
+        "name" : "dataFormatConfig.charset",
+        "value" : "UTF-8"
+      }, {
+        "name" : "dataFormatConfig.removeCtrlChars",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.textMaxLineLen",
+        "value" : 1024
+      }, {
+        "name" : "dataFormatConfig.useCustomDelimiter",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.customDelimiter",
+        "value" : "\\r\\n"
+      }, {
+        "name" : "dataFormatConfig.includeCustomDelimiterInTheText",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.jsonContent",
+        "value" : "MULTIPLE_OBJECTS"
+      }, {
+        "name" : "dataFormatConfig.jsonMaxObjectLen",
+        "value" : 4096
+      }, {
+        "name" : "dataFormatConfig.csvFileFormat",
+        "value" : "CSV"
+      }, {
+        "name" : "dataFormatConfig.csvHeader",
+        "value" : "NO_HEADER"
+      }, {
+        "name" : "dataFormatConfig.csvAllowExtraColumns",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.csvExtraColumnPrefix",
+        "value" : "_extra_"
+      }, {
+        "name" : "dataFormatConfig.csvMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "dataFormatConfig.csvCustomDelimiter",
+        "value" : "|"
+      }, {
+        "name" : "dataFormatConfig.multiCharacterFieldDelimiter",
+        "value" : "||"
+      }, {
+        "name" : "dataFormatConfig.multiCharacterLineDelimiter",
+        "value" : "${str:unescapeJava('\\\\n')}"
+      }, {
+        "name" : "dataFormatConfig.csvCustomEscape",
+        "value" : "\\"
+      }, {
+        "name" : "dataFormatConfig.csvCustomQuote",
+        "value" : "\""
+      }, {
+        "name" : "dataFormatConfig.csvEnableComments",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.csvCommentMarker",
+        "value" : "#"
+      }, {
+        "name" : "dataFormatConfig.csvIgnoreEmptyLines",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.csvRecordType",
+        "value" : "LIST_MAP"
+      }, {
+        "name" : "dataFormatConfig.csvSkipStartLines",
+        "value" : 0
+      }, {
+        "name" : "dataFormatConfig.parseNull",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.nullConstant",
+        "value" : "\\\\N"
+      }, {
+        "name" : "dataFormatConfig.xmlRecordElement",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.includeFieldXpathAttributes",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.xPathNamespaceContext",
+        "value" : [ ]
+      }, {
+        "name" : "dataFormatConfig.outputFieldAttributes",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.xmlMaxObjectLen",
+        "value" : 4096
+      }, {
+        "name" : "dataFormatConfig.logMode",
+        "value" : "COMMON_LOG_FORMAT"
+      }, {
+        "name" : "dataFormatConfig.logMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "dataFormatConfig.retainOriginalLine",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.customLogFormat",
+        "value" : "%h %l %u %t \"%r\" %>s %b"
+      }, {
+        "name" : "dataFormatConfig.regex",
+        "value" : "^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+) (\\S+) (\\S+)\" (\\d{3}) (\\d+)"
+      }, {
+        "name" : "dataFormatConfig.fieldPathsToGroupName",
+        "value" : [ {
+          "fieldPath" : "/",
+          "group" : 1
+        } ]
+      }, {
+        "name" : "dataFormatConfig.grokPatternDefinition",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.grokPattern",
+        "value" : "%{COMMONAPACHELOG}"
+      }, {
+        "name" : "dataFormatConfig.onParseError",
+        "value" : "ERROR"
+      }, {
+        "name" : "dataFormatConfig.maxStackTraceLines",
+        "value" : 50
+      }, {
+        "name" : "dataFormatConfig.enableLog4jCustomLogFormat",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.log4jCustomLogFormat",
+        "value" : "%r [%t] %-5p %c %x - %m%n"
+      }, {
+        "name" : "dataFormatConfig.avroSchemaSource",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.avroSchema",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.schemaRegistryUrls",
+        "value" : [ ]
+      }, {
+        "name" : "dataFormatConfig.basicAuth",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.schemaLookupMode",
+        "value" : "SUBJECT"
+      }, {
+        "name" : "dataFormatConfig.subject",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.schemaId",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.avroSkipUnionIndex",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.protoDescriptorFile",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.messageType",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.isDelimited",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.binaryMaxObjectLen",
+        "value" : 1024
+      }, {
+        "name" : "dataFormatConfig.datagramMode",
+        "value" : "SYSLOG"
+      }, {
+        "name" : "dataFormatConfig.typesDbPath",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.convertTime",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.excludeInterval",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.authFilePath",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.netflowOutputValuesMode",
+        "value" : "RAW_AND_INTERPRETED"
+      }, {
+        "name" : "dataFormatConfig.maxTemplateCacheSize",
+        "value" : -1
+      }, {
+        "name" : "dataFormatConfig.templateCacheTimeoutMs",
+        "value" : -1
+      }, {
+        "name" : "dataFormatConfig.netflowOutputValuesModeDatagram",
+        "value" : "RAW_AND_INTERPRETED"
+      }, {
+        "name" : "dataFormatConfig.maxTemplateCacheSizeDatagram",
+        "value" : -1
+      }, {
+        "name" : "dataFormatConfig.templateCacheTimeoutMsDatagram",
+        "value" : -1
+      }, {
+        "name" : "dataFormatConfig.wholeFileMaxObjectLen",
+        "value" : 8192
+      }, {
+        "name" : "dataFormatConfig.rateLimit",
+        "value" : "-1"
+      }, {
+        "name" : "dataFormatConfig.verifyChecksum",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.excelHeader",
+        "value" : null
+      }, {
+        "name" : "dataFormatConfig.excelSkipCellsWithNoHeader",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.excelReadAllSheets",
+        "value" : false
+      }, {
+        "name" : "dataFormatConfig.excelSheetNames",
+        "value" : [ ]
+      } ]
+    } ]
+  },
+  "valid" : true,
+  "issues" : {
+    "pipelineIssues" : [ ],
+    "stageIssues" : { },
+    "issueCount" : 0
+  },
+  "previewable" : true
+}

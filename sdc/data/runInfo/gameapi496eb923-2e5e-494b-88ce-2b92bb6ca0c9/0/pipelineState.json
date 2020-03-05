@@ -1,0 +1,18 @@
+{
+  "pipelineId" : "gameapi496eb923-2e5e-494b-88ce-2b92bb6ca0c9",
+  "rev" : "0",
+  "user" : "admin",
+  "status" : "RUNNING",
+  "message" : null,
+  "timeStamp" : 1583402777003,
+  "attributes" : {
+    "IS_REMOTE_PIPELINE" : false,
+    "RUNTIME_PARAMETERS" : null,
+    "INTERCEPTOR_CONFIGS" : [ ]
+  },
+  "executionMode" : "STANDALONE",
+  "metrics" : null,
+  "retryAttempt" : 0,
+  "nextRetryTimeStamp" : 0,
+  "name" : "gameapi496eb923-2e5e-494b-88ce-2b92bb6ca0c9"
+}

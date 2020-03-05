@@ -1,0 +1,299 @@
+{
+  "ExpressionEvaluator_05" : {
+    "yPos" : 809.908447265625,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "Expression Evaluator 2",
+    "xPos" : 953.6320474084403
+  },
+  "ExpressionEvaluator_04" : {
+    "yPos" : 597.4459228515625,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "Expression Evaluator 1",
+    "xPos" : 1163.93701171875
+  },
+  "ExpressionEvaluator_06" : {
+    "yPos" : -115.00003051757812,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "Expression Evaluator 3",
+    "xPos" : 1668.33349609375
+  },
+  "RedisLookupProcessor_01" : {
+    "yPos" : 170,
+    "stageType" : "PROCESSOR",
+    "icon" : "redis.png",
+    "description" : "",
+    "label" : "check for previus mesure",
+    "xPos" : 940
+  },
+  "ExpressionEvaluator_01" : {
+    "yPos" : 320,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "Compute duration",
+    "xPos" : 1380
+  },
+  "JDBCProducer_01" : {
+    "yPos" : 317.3338623046875,
+    "stageType" : "TARGET",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Write lap",
+    "xPos" : 1598.189697265625
+  },
+  "ExpressionEvaluator_03" : {
+    "yPos" : 50,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "substring micro to mili seconds",
+    "xPos" : 280
+  },
+  "KafkaConsumer_01" : {
+    "yPos" : 50,
+    "stageType" : "SOURCE",
+    "rawSource" : {
+      "configuration" : [ {
+        "name" : "brokerHost",
+        "value" : "localhost"
+      }, {
+        "name" : "brokerPort",
+        "value" : 9092
+      }, {
+        "name" : "topic",
+        "value" : "myTopic"
+      }, {
+        "name" : "partition",
+        "value" : 0
+      }, {
+        "name" : "maxWaitTime",
+        "value" : 1000
+      } ]
+    },
+    "icon" : "kafka.png",
+    "description" : "",
+    "label" : "Read Kafka",
+    "xPos" : 60
+  },
+  "StartPipeline_01" : {
+    "yPos" : 447.86195373535156,
+    "stageType" : "PROCESSOR",
+    "icon" : "pipeline.png",
+    "description" : "",
+    "label" : "Start Pipeline 1",
+    "xPos" : 1367.5269775390625
+  },
+  "StartPipeline_02" : {
+    "yPos" : 447.862060546875,
+    "stageType" : "PROCESSOR",
+    "icon" : "pipeline.png",
+    "description" : "",
+    "label" : "Start transformer",
+    "xPos" : 1594.9638671875
+  },
+  "JDBCTee_06" : {
+    "yPos" : -115,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Set current game",
+    "xPos" : 1871.6669921875
+  },
+  "FieldTypeConverter_04" : {
+    "yPos" : 300,
+    "stageType" : "PROCESSOR",
+    "icon" : "converter.png",
+    "description" : "",
+    "label" : "converte datetimes",
+    "xPos" : 720
+  },
+  "JDBCTee_02" : {
+    "yPos" : 450.70135498046875,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Set stop time",
+    "xPos" : 1161.3953857421875
+  },
+  "FieldTypeConverter_03" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "converter.png",
+    "description" : "",
+    "label" : "converte datetimes",
+    "xPos" : 720
+  },
+  "FieldTypeConverter_02" : {
+    "yPos" : 320,
+    "stageType" : "PROCESSOR",
+    "icon" : "converter.png",
+    "description" : "",
+    "label" : "converte datetimes",
+    "xPos" : 1160
+  },
+  "JDBCTee_04" : {
+    "yPos" : 596.050537109375,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Restet Start and Stop time",
+    "xPos" : 1366.046142578125
+  },
+  "JDBCTee_05" : {
+    "yPos" : -113.33331298828125,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Create new game",
+    "xPos" : 1450
+  },
+  "StreamSelector_02" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "laneSelector.png",
+    "description" : "",
+    "label" : "check if game already finished",
+    "xPos" : 1178.8221435546875
+  },
+  "StreamSelector_01" : {
+    "yPos" : 200,
+    "stageType" : "PROCESSOR",
+    "icon" : "laneSelector.png",
+    "description" : "",
+    "label" : "Dispatch events",
+    "xPos" : 500
+  },
+  "JDBCLookup_01" : {
+    "yPos" : 170,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "get player",
+    "xPos" : 720
+  },
+  "JDBCTee_01" : {
+    "yPos" : 38.33331298828125,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Set start time",
+    "xPos" : 1443.333251953125
+  },
+  "JDBCLookup_03" : {
+    "yPos" : 300,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get current game",
+    "xPos" : 940
+  },
+  "JDBCLookup_02" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get current game",
+    "xPos" : 940
+  },
+  "JDBCLookup_04" : {
+    "yPos" : 430,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get current game",
+    "xPos" : 720
+  },
+  "Redis_03" : {
+    "yPos" : 808.9530029296875,
+    "stageType" : "TARGET",
+    "icon" : "redis.png",
+    "description" : "",
+    "label" : "Reset Redis",
+    "xPos" : 2342.7660806115655
+  },
+  "Redis_02" : {
+    "yPos" : 170,
+    "stageType" : "TARGET",
+    "icon" : "redis.png",
+    "description" : "",
+    "label" : "Update Redis",
+    "xPos" : 1160
+  },
+  "JDBCQuery_01" : {
+    "yPos" : 689.6019337913204,
+    "stageType" : "EXECUTOR",
+    "icon" : "rdbms-executor.png",
+    "description" : "",
+    "label" : "Delete laps",
+    "xPos" : 955.3510415490653
+  },
+  "JDBCQuery_02" : {
+    "yPos" : 959.0843200683594,
+    "stageType" : "EXECUTOR",
+    "icon" : "rdbms-executor.png",
+    "description" : "",
+    "label" : "Remove winner",
+    "xPos" : 946.0777587890625
+  },
+  ":pipeline:" : {
+    "previewConfig" : {
+      "previewSource" : "SNAPSHOT_SOURCE",
+      "batchSize" : 10,
+      "timeout" : 30000,
+      "writeToDestinations" : false,
+      "executeLifecycleEvents" : false,
+      "showHeader" : false,
+      "showFieldType" : true,
+      "rememberMe" : false,
+      "snapshotInfo" : {
+        "user" : "admin",
+        "id" : "snapshot1578921851179",
+        "label" : "Snapshot2020",
+        "name" : "collectfromedge8a348937-607a-4d94-9b67-ee5c45dcf205",
+        "rev" : "0",
+        "timeStamp" : 1578921853948,
+        "inProgress" : false,
+        "batchNumber" : 124,
+        "failureSnapshot" : false
+      }
+    }
+  },
+  "Trash_05" : {
+    "yPos" : 596.050537109375,
+    "stageType" : "TARGET",
+    "icon" : "trash.png",
+    "description" : "",
+    "label" : "Reset event",
+    "xPos" : 1598.6046142578125
+  },
+  "Trash_01" : {
+    "yPos" : 560,
+    "stageType" : "TARGET",
+    "icon" : "trash.png",
+    "description" : "",
+    "label" : "Unknown event",
+    "xPos" : 720
+  },
+  "Trash_03" : {
+    "yPos" : 449.305908203125,
+    "stageType" : "TARGET",
+    "icon" : "trash.png",
+    "description" : "",
+    "label" : "Stop event",
+    "xPos" : 1795.4888916015625
+  },
+  "Trash_04" : {
+    "yPos" : 38.33331298828125,
+    "stageType" : "TARGET",
+    "icon" : "trash.png",
+    "description" : "",
+    "label" : "Start Event",
+    "xPos" : 1670
+  }
+}

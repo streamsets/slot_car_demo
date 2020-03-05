@@ -1,0 +1,30 @@
+<nb-card>
+  <nb-card-header>
+    Finished Games
+  </nb-card-header>
+
+  <nb-card-body>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Player 1</th>
+          <th scope="col">Player 2</th>
+          <th scope="col">Start Time</th>
+          <th scope="col">Stop Time</th>
+          <th scope="col">Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let g of games">
+          <th scope="row">{{g.id}}</th>
+          <td>{{g.player1}}</td>
+          <td>{{g.player2}}</td>
+          <td>{{g.start_time | date:'medium' }}</td>
+          <td>{{g.stop_time | date:'medium' }}</td>
+          <td>{{g.winner}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

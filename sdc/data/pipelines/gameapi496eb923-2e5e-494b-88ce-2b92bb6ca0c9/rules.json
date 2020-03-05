@@ -1,0 +1,61 @@
+{
+  "schemaVersion" : 3,
+  "version" : 2,
+  "metricsRuleDefinitions" : [ {
+    "id" : "badRecordsAlertID",
+    "alertText" : "High incidence of Error Records",
+    "metricId" : "pipeline.batchErrorRecords.counter",
+    "metricType" : "COUNTER",
+    "metricElement" : "COUNTER_COUNT",
+    "condition" : "${value() > 100}",
+    "sendEmail" : false,
+    "enabled" : false,
+    "timestamp" : 1577801754337,
+    "valid" : true
+  }, {
+    "id" : "stageErrorAlertID",
+    "alertText" : "High incidence of Stage Errors",
+    "metricId" : "pipeline.batchErrorMessages.counter",
+    "metricType" : "COUNTER",
+    "metricElement" : "COUNTER_COUNT",
+    "condition" : "${value() > 100}",
+    "sendEmail" : false,
+    "enabled" : false,
+    "timestamp" : 1577801754337,
+    "valid" : true
+  }, {
+    "id" : "idleGaugeID",
+    "alertText" : "Pipeline is Idle",
+    "metricId" : "RuntimeStatsGauge.gauge",
+    "metricType" : "GAUGE",
+    "metricElement" : "TIME_OF_LAST_RECEIVED_RECORD",
+    "condition" : "${time:now() - value() > 120000}",
+    "sendEmail" : false,
+    "enabled" : false,
+    "timestamp" : 1577801754337,
+    "valid" : true
+  }, {
+    "id" : "batchTimeAlertID",
+    "alertText" : "Batch taking more time to process",
+    "metricId" : "RuntimeStatsGauge.gauge",
+    "metricType" : "GAUGE",
+    "metricElement" : "CURRENT_BATCH_AGE",
+    "condition" : "${value() > 200}",
+    "sendEmail" : false,
+    "enabled" : false,
+    "timestamp" : 1577801754337,
+    "valid" : true
+  } ],
+  "dataRuleDefinitions" : [ ],
+  "driftRuleDefinitions" : [ ],
+  "uuid" : "e2e53692-53c3-418f-8deb-79707ef94858",
+  "configuration" : [ {
+    "name" : "emailIDs",
+    "value" : [ ]
+  }, {
+    "name" : "webhookConfigs",
+    "value" : [ ]
+  } ],
+  "ruleIssues" : [ ],
+  "configIssues" : [ ]
+}

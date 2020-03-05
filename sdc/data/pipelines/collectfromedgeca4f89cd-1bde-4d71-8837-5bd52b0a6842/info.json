@@ -1,0 +1,18 @@
+{
+  "pipelineId" : "collectfromedgeca4f89cd-1bde-4d71-8837-5bd52b0a6842",
+  "title" : "collect_from_edge",
+  "description" : "",
+  "created" : 1579174111298,
+  "lastModified" : 1579258583346,
+  "creator" : "admin",
+  "lastModifier" : "admin",
+  "lastRev" : "0",
+  "uuid" : "5354a5a7-d040-4c7d-a57a-12b12a366a00",
+  "valid" : true,
+  "metadata" : {
+    "labels" : [ "Race_demo" ]
+  },
+  "name" : "collectfromedgeca4f89cd-1bde-4d71-8837-5bd52b0a6842",
+  "sdcVersion" : "3.13.0",
+  "sdcId" : "3d667fc2-3853-11ea-a551-d7f12a7f8c3d"
+}

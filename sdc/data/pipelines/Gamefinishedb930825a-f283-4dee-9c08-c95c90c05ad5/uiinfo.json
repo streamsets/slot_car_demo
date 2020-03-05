@@ -1,0 +1,46 @@
+{
+  "PipelineFinisherExecutor_01" : {
+    "yPos" : 200,
+    "stageType" : "EXECUTOR",
+    "icon" : "finisher.png",
+    "description" : "",
+    "label" : "Pipeline Finisher Executor 1",
+    "xPos" : 280
+  },
+  "ExpressionEvaluator_01" : {
+    "yPos" : 50,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "add game",
+    "xPos" : 280
+  },
+  "JDBCProducer_01" : {
+    "yPos" : 50,
+    "stageType" : "TARGET",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Write winner",
+    "xPos" : 500
+  },
+  "JDBCQueryConsumer_01" : {
+    "yPos" : 50,
+    "stageType" : "SOURCE",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get winner",
+    "xPos" : 60
+  },
+  ":pipeline:" : {
+    "previewConfig" : {
+      "previewSource" : "CONFIGURED_SOURCE",
+      "batchSize" : 10,
+      "timeout" : 30000,
+      "writeToDestinations" : false,
+      "executeLifecycleEvents" : false,
+      "showHeader" : false,
+      "showFieldType" : true,
+      "rememberMe" : false
+    }
+  }
+}

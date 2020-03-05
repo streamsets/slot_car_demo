@@ -1,0 +1,18 @@
+{
+  "pipelineId" : "Gamefinishedb930825a-f283-4dee-9c08-c95c90c05ad5",
+  "title" : "Game finished",
+  "description" : "",
+  "created" : 1579174111448,
+  "lastModified" : 1579858230733,
+  "creator" : "admin",
+  "lastModifier" : "admin",
+  "lastRev" : "0",
+  "uuid" : "d2dc7a25-dc38-4b4d-82f3-41d1853db659",
+  "valid" : true,
+  "metadata" : {
+    "labels" : [ "Race_demo" ]
+  },
+  "name" : "Gamefinishedb930825a-f283-4dee-9c08-c95c90c05ad5",
+  "sdcVersion" : "3.13.0",
+  "sdcId" : "3d667fc2-3853-11ea-a551-d7f12a7f8c3d"
+}

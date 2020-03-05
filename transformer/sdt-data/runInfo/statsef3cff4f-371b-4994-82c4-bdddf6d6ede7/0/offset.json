@@ -1,0 +1,7 @@
+{
+  "version" : 2,
+  "offsets" : {
+    "JDBC_02" : "{\"originId\":\"JDBC_02\",\"version\":1,\"start\":\"1\",\"count\":-1,\"end\":\"6\"}",
+    "JDBC_01" : "{\"originId\":\"JDBC_01\",\"version\":1,\"start\":\"1\",\"count\":-1,\"end\":\"100\"}"
+  }
+}

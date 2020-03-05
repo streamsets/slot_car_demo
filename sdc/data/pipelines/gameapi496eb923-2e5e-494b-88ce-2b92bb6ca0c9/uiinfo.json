@@ -1,0 +1,199 @@
+{
+  "SendResponsetoOrigin_01" : {
+    "yPos" : 170,
+    "stageType" : "TARGET",
+    "icon" : "response.png",
+    "description" : "",
+    "label" : "Send Response to Origin 1",
+    "xPos" : 2260
+  },
+  "ExpressionEvaluator_01" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "Expression Evaluator 1",
+    "xPos" : 940
+  },
+  "JDBCTee_02" : {
+    "yPos" : 430,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "insert player 2",
+    "xPos" : 940
+  },
+  "JDBCTee_03" : {
+    "yPos" : 430,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Create game",
+    "xPos" : 1160
+  },
+  "JDBCTee_04" : {
+    "yPos" : 430,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Set current game",
+    "xPos" : 1600
+  },
+  "ExpressionEvaluator_03" : {
+    "yPos" : 430,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "Expression Evaluator 3",
+    "xPos" : 1820
+  },
+  "FieldRemover_01" : {
+    "yPos" : 170,
+    "stageType" : "PROCESSOR",
+    "icon" : "filter.png",
+    "description" : "",
+    "label" : "remove query",
+    "xPos" : 2040
+  },
+  "FieldRemover_02" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "filter.png",
+    "description" : "",
+    "label" : "Field Remover 1",
+    "xPos" : 1820
+  },
+  "ExpressionEvaluator_02" : {
+    "yPos" : 430,
+    "stageType" : "PROCESSOR",
+    "icon" : "expression.png",
+    "description" : "",
+    "label" : "Expression Evaluator 2",
+    "xPos" : 1380
+  },
+  "JDBCLookup_01" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get current game",
+    "xPos" : 720
+  },
+  "JDBCTee_01" : {
+    "yPos" : 430,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "insert player 1",
+    "xPos" : 720
+  },
+  "JDBCLookup_03" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get player 2",
+    "xPos" : 1380
+  },
+  "JDBCLookup_02" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get player 1",
+    "xPos" : 1160
+  },
+  "JDBCLookup_05" : {
+    "yPos" : 40,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Get winner",
+    "xPos" : 1600
+  },
+  "JDBCLookup_04" : {
+    "yPos" : 170,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "get laps",
+    "xPos" : 720
+  },
+  "HTTPRouter_01" : {
+    "description" : "",
+    "label" : "HTTP Router 1",
+    "xPos" : 500,
+    "yPos" : 230,
+    "stageType" : "PROCESSOR"
+  },
+  "JDBCLookup_07" : {
+    "yPos" : 560,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Best player Lap",
+    "xPos" : 720
+  },
+  "GroovyEvaluator_01" : {
+    "yPos" : 50,
+    "stageType" : "PROCESSOR",
+    "icon" : "groovy.png",
+    "description" : "",
+    "label" : "Groovy Evaluator 1",
+    "xPos" : 280
+  },
+  "JDBCLookup_06" : {
+    "yPos" : 300,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "games",
+    "xPos" : 720
+  },
+  "Redis_01" : {
+    "yPos" : 430,
+    "stageType" : "TARGET",
+    "icon" : "redis.png",
+    "description" : "",
+    "label" : "reset Redis",
+    "xPos" : 2040
+  },
+  "JDBCLookup_08" : {
+    "yPos" : 690,
+    "stageType" : "PROCESSOR",
+    "icon" : "rdbms.png",
+    "description" : "",
+    "label" : "Best Races",
+    "xPos" : 720
+  },
+  ":pipeline:" : {
+    "previewConfig" : {
+      "previewSource" : "CONFIGURED_SOURCE",
+      "batchSize" : 10,
+      "timeout" : 30000,
+      "writeToDestinations" : false,
+      "executeLifecycleEvents" : false,
+      "showHeader" : true,
+      "showFieldType" : true,
+      "rememberMe" : false,
+      "snapshotInfo" : {
+        "user" : "admin",
+        "id" : "snapshot1578656508054",
+        "label" : "Snapshot1",
+        "name" : "gameapicopyfe9abab4-4571-4642-bb57-aa7bbf9093fe",
+        "rev" : "0",
+        "timeStamp" : 1578656511597,
+        "inProgress" : false,
+        "batchNumber" : 1,
+        "failureSnapshot" : false
+      }
+    }
+  },
+  "RESTService_01" : {
+    "description" : "",
+    "label" : "REST Service 1",
+    "xPos" : 60,
+    "yPos" : 50,
+    "stageType" : "SOURCE"
+  }
+}

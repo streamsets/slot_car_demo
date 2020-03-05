@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>
+    Fastest races
+  </nb-card-header>
+
+  <nb-card-body>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Player</th>
+          <th scope="col">Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of races; let i = index;">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{r.name}}</td>
+          <td *ngIf="i == 0; else timediff">{{r.sum_duration}} ms</td>
+          <ng-template #timediff>
+            <td>+{{r.sum_duration - races[0].sum_duration}} ms</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,18 @@
+{
+  "pipelineId" : "statsef3cff4f-371b-4994-82c4-bdddf6d6ede7",
+  "title" : "stats",
+  "description" : "",
+  "created" : 1579096071219,
+  "lastModified" : 1579104866329,
+  "creator" : "admin",
+  "lastModifier" : "admin",
+  "lastRev" : "0",
+  "uuid" : "ee5aef17-3a32-46d9-bd58-e4881078ee9e",
+  "valid" : true,
+  "metadata" : {
+    "labels" : [ "Racing Demo" ]
+  },
+  "name" : "statsef3cff4f-371b-4994-82c4-bdddf6d6ede7",
+  "sdcVersion" : "3.11.0",
+  "sdcId" : "7faaae7e-b9fc-11e9-9594-e54a37a22ed7"
+}

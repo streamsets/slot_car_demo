@@ -1,0 +1,31 @@
+{
+  "pipelineId" : "readrace9ccd64d1-ad12-4a33-8ff0-1b4ecacdffda",
+  "rev" : "0",
+  "user" : "admin",
+  "status" : "START_ERROR",
+  "message" : "kafka: client has run out of available brokers to talk to (Is your cluster reachable?)",
+  "timeStamp" : 1583403061850,
+  "attributes" : {
+    "issues" : {
+      "issueCount" : 1,
+      "pipelineIssues" : [ ],
+      "stageIssues" : {
+        "KafkaProducer_01" : [ {
+          "instanceName" : "KafkaProducer_01",
+          "configGroup" : "",
+          "configName" : "",
+          "message" : "kafka: client has run out of available brokers to talk to (Is your cluster reachable?)",
+          "level" : "STAGE_CONFIG",
+          "count" : 1,
+          "additionalInfo" : null
+        } ]
+      }
+    },
+    "IS_REMOTE_PIPELINE" : false
+  },
+  "executionMode" : "EDGE",
+  "metrics" : "",
+  "retryAttempt" : 0,
+  "nextRetryTimeStamp" : 0,
+  "name" : "readrace9ccd64d1-ad12-4a33-8ff0-1b4ecacdffda"
+}

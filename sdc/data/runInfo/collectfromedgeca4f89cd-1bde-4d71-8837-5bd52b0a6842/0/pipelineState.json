@@ -1,0 +1,18 @@
+{
+  "pipelineId" : "collectfromedgeca4f89cd-1bde-4d71-8837-5bd52b0a6842",
+  "rev" : "0",
+  "user" : "admin",
+  "status" : "RUNNING",
+  "message" : null,
+  "timeStamp" : 1583402786265,
+  "attributes" : {
+    "IS_REMOTE_PIPELINE" : false,
+    "RUNTIME_PARAMETERS" : null,
+    "INTERCEPTOR_CONFIGS" : [ ]
+  },
+  "executionMode" : "STANDALONE",
+  "metrics" : null,
+  "retryAttempt" : 0,
+  "nextRetryTimeStamp" : 0,
+  "name" : "collectfromedgeca4f89cd-1bde-4d71-8837-5bd52b0a6842"
+}
