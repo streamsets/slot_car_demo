@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-admin-demo": {
+    "streamsets-demo": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-admin-demo:build"
+            "browserTarget": "streamsets-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-admin-demo:build:production"
+              "browserTarget": "streamsets-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-admin-demo:build"
+            "browserTarget": "streamsets-demo:build"
           }
         },
         "test": {
@@ -141,7 +141,7 @@
         }
       }
     },
-    "ngx-admin-demo-e2e": {
+    "streamsets-demo-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -150,7 +150,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "ngx-admin-demo:serve"
+            "devServerTarget": "streamsets-demo:serve"
           }
         },
         "lint": {
@@ -165,7 +165,7 @@
       }
     }
   },
-  "defaultProject": "ngx-admin-demo",
+  "defaultProject": "streamsets-demo",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "ngx",
